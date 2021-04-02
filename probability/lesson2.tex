@@ -30,18 +30,7 @@
 		y < x \\ x +y < L \\ x > 0 \\ y > 0
 	\end{cases}$
 	
-	\begin{tikzpicture}
-		\begin{axis}[
-			xlabel=$x$, ylabel=$y$,
-			xmin=0, ymin=0,
-			xmax=6, ymax=6
-			]
-			\addplot+[mark=none, fill=blue, domain=0:2] {4-x} \closedcycle;
-			\addplot+[mark=none, fill=green, domain=2:4] {4-x} \closedcycle;
-			\addplot+[mark=none, domain=0:2, fill=green] {x} \closedcycle;
-		\end{axis}
-	\end{tikzpicture}
-	
+	\includegraphics[width=\textwidth]{exercise3-2.png}	
 	Здесь, $| \Omega | = \frac{L^2}{2}$, а вероятность, которая удовлетворяет условии: $\frac{L \cdot \frac{L}{2}}{2} = \frac{L^2}{4}$ \\ Ответ: $\frac{L^2}{4} : \frac{L^2}{2} = \frac{1}{2}$
 \end{exercise}
 
@@ -102,7 +91,7 @@
 
 \begin{exercise}[15] В течение суток к причалу независимо друг от друга
 	
-	\includegraphics[scale=0.5]{exer15.png}
+	\includegraphics[width=\textwidth]{exercise15-2.png}
 	
-	Пусть $x$ - время первый сухогруз начинает разгрузиться и $y$ - время второй сухогруз начинает разгрузиться \\ Тогда, $x+6 \leq 24$ и $y+8 \leq 24 \Leftrightarrow x \leq 18$ и $y \leq 16$ \\ Cлучай 1: первый сухогруз начинает раньше чем второй, тогда $x+6 \leq y$ \\ Случай 2: второй сухогруз начинает раньше чем первый, тогда $y+8 \leq x$ \\ Получим $P(A) = \frac{S_{\triangle ABC} + S_{\triangle MNP}}{S_{\square}} = \Big(\frac{10 \cdot 10}{2} + \frac{10 \cdot 10}{2} \Big) : (16 \cdot 18) = \frac{25}{72}$ 
+	Пусть $x$ - время первый сухогруз начинает разгрузиться и $y$ - время второй сухогруз начинает разгрузиться \\ Тогда, $x+6 \leq 24$ и $y+8 \leq 24 \Leftrightarrow x \leq 18$ и $y \leq 16$ \\ Cлучай 1: первый сухогруз начинает раньше чем второй, тогда $x+6 \leq y$ \\ Случай 2: второй сухогруз начинает раньше чем первый, тогда $y+8 \leq x$ \\ Получим $P(A) = \frac{S_{\triangle ABC} + S_{\triangle MNP}}{S_{ADNO}} = \Big(\frac{10 \cdot 10}{2} + \frac{10 \cdot 10}{2} \Big) : (16 \cdot 18) = \frac{25}{72}$ 
 \end{exercise}

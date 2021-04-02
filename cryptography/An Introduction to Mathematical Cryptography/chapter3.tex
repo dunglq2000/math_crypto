@@ -1,0 +1,42 @@
+\chapter*{Chapter 3}
+\begin{exer}[3.4] \textit{Euler's phi function $\phi(N)$} is the function defined by \[\phi(N) = \#\{0 \leq k < N: \gcd(k, N)=1\}\]
+	\begin{enumerate}
+		\item [(b)] $\phi(p)=p-1$
+		\item [(c)] Consider the set $\{ai_1, ai_2, \cdots, ai_{\phi(N)}\}$ is the set of numbers which are coprime with $N$, which means $\gcd(ai_j, N)=1$. We prove that those elements are distinct. \\ Suppose that there are $aj$ and $ak$, which satisfy $aj \equiv ak \pmod{N}$, because $\gcd(a, N)=1 \Rightarrow j \equiv k \pmod{N}$. So every element is distinct. \\ Moreover, if $ai_j \equiv j_k \pmod{N}$, which means $j_k \neq 0$, so the set $\{ai_1, ai_2, \cdots, ai_{\phi(N)}\}$ is a permutation of the set $\{i_1, i_2, \cdots, i_{\phi(N)}\}$ \\ $\Rightarrow ai_1 \times ai_2 \times \cdots \times ai_{\phi(N)} \equiv i_1 \times i_2 \times \cdots \times i_{\phi(N)} \pmod{N}$ \\ $\Rightarrow a^{\phi(N)} \equiv 1 \pmod{N}$
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.5] Properties of Euler's phi function
+	\begin{enumerate}
+		\item [(a)] If $p$ and $q$ are distinct primes, how is $\phi(pq)$ related to $\phi(p)$ and $\phi(q)$? \\ We consider numbers from 1 to $pq$, there are $pq$ elements \\ Notice that $iq = jq$ if and only if $i=q$ and $j=p$ because $p$ and $q$ are distinct primes \\ Next, we subtract the number of divisors having factor $p$, there are $q$ elements ($1 \times p, 2 \times p, \cdots, q \times p$) \\ Next, we subtract the number of divisors having factor $q$, there are $p$ elements ($1 \times q$, $2 \times q, \cdots, p \times q$) \\ Here we get $pq - p - q$ elements, but remember that we have subtracted element $pq$ twice, so we need to add 1 \\ $\Rightarrow \phi(pq) = pq - p - q + 1 = (p-1)(q-1) = \phi(p)\phi(q)$
+		\item [(b)] If $p$ is prime, what is the value of $\phi(p^2)$? How about $\phi(p^j)$? \\ From 1 to $p^j$ there are $p^j$ elements, we subtract the number of divisors having factor $p$, those are $\{1p, 2p, \cdots, p^{j-1}p\} \Rightarrow p^{j-1}$ numbers \\ $\Rightarrow \phi(p^j) = p^j - p^{j-1}$
+		\item [(c)] We write numbers from 1 to $mn$ as matrix $m$ rows and $n$ columns
+		\begin{center}
+			\begin{tabular}{c c c c c}
+				$0m+1$ & $1m+1$ & $\cdots$ & $(n-2)m+1$ & $(n-1)m+1$ \\ $0m+2$ & $1m+2$ & $\cdots$ & $(n-2)m+2$ & $(n-1)m+2$ \\ $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\ $0m + m-1$ & $1m + m-1$ & $\cdots$ & $(n-2)m + m-1$ & $(n-1)m + m - 1$ \\ $0m + m$ & $1 m + m$ & $\cdots$ & $(n-2)m + m$ & $(n-1)m + m$
+			\end{tabular}
+		\end{center}
+		With number $r$ that satisfies $\gcd(r,m)=1$, we get $gcd(km+r,r)=1$ ($k=\overline{0, n-1}$). Here $km+r$ is all numbers on $r$-th row, which means there are $\phi(m)$ rows, whose elements coprime with $m$ \\ On those $\phi(m)$ rows, each row has $\phi(n)$ elements that coprime with $n$. Hence $\phi(m)\phi(n)=\phi(mn)$
+		\item [(d)] From (b) we get $\phi(p_i) = p_i - 1$
+		\begin{align*}
+			\Rightarrow \phi(N) & = \phi(p_1)\phi(p_2)\cdots\phi(p_r) \\ & = (p_1 - 1)(p_2 -1)\cdots(p_r-1) \\ & = N\prod_{i=1}^{r}\Bigg(1-\frac{1}{p_i}\Bigg)
+		\end{align*}
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.6] Let $N$, $c$, and $e$ be positive integers satisfying the conditions $\gcd(N,c)=1$ and $\gcd(e,\phi(N))=1$
+	\begin{enumerate}
+		\item [(a)] Explain how to solve the congruence \[x^e \equiv c \pmod{N}\] assuming that you know the value of $\phi(N)$ \\ Because of $\gcd(e, \phi(N)) = 1$, we can find an integers $d$ satisfying that $ed \equiv 1 \pmod{\phi(N)}$ (using Extended Euclidean Algorithm) \\ $\Rightarrow ed = k\phi(N) + 1$ with $k \in \mathbb{Z}$ \\ And because of $\gcd(N, c)=1 \Rightarrow \gcd(N,x)=1$, and \[c^d = \Big(x^e\Big)^d = x^{ed} = x^{k\phi(N) + 1} = (x^k)^{\phi(N)}x\] and we have known that $(x^k)^{\phi(N)} \equiv 1 \pmod{N}$ from Exercise 3.4. Therefore we get \[c^d \equiv x \pmod{N}\], we finish finding solution
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.11] Alice chooses two large primes $p$ and $q$ and she publishes $N=pq$. It is assumed that $N$ is hard to factor. Alice also chooses three random numbers $g$, $r_1$, and $r_2$ modulo $N$ and computes $$g_1 \equiv g^{r_1(p-1)} \pmod{N} \qquad \text{and} \qquad g_2 \equiv g^{r_2(q-1)} \pmod{N}$$ Her public key is the triple $(N, g_1, g_2)$ and her private key is the pair of primes $(p, q)$.
+	
+	Now Bob wants to send the message $m$ to Alice, where $m$ is a number modulo $N$. He chooses two random integers $s_1$ and $s_2$ modulo $N$ and computes $$c_1 \equiv mg_1^{s_1} \pmod{N} \qquad \text{and} \qquad c_2 \equiv mg_2^{s_2} \pmod{N}$$ Bob sends the ciphertext $(c_1, c_2)$ to Alice.
+	
+	Decryption is extreamly fast and essy. Alice uses the Chinese remainder theorem to solve the pair of congruences \[x \equiv c_2 \pmod{p} \qquad \text{and} \qquad x \equiv c_2 \pmod{q}\]
+	\begin{enumerate}
+		\item [(a)] Prove that Alice's solution $x$ is equal to Bob's plaintext $m$ \\ First we have $c_1 \equiv mg_1^{s_1} \pmod{N} \equiv mg_1^{s_1} \pmod{p} \equiv m \pmod{p}$ \\ (because $g_1^{s_1} = (g_1^{s_1 r_1})^{(p-1)} \equiv 1 \pmod{p}$) \\ Similarly, we have $c_2 \equiv m \pmod{q}$ \\ The solution of congurences is \[x \equiv c_1 q q' + c_2 p p' \pmod N\] with $p p' + q q' = 1$ \\ $\Rightarrow x \equiv m p p' + m q q' \equiv m(p p' + q q') \equiv m \pmod N$
+		\item [(b)] We have $g_1 \equiv g^{r_1 (p-1)} \pmod N \equiv g^{r_1 (p-1)} \pmod p \equiv 1 \pmod p$ \\ $\Rightarrow p = \gcd(g_1-1, N)$. Similarly, $q = \gcd(g_2-1, N)$ \\ From here we have recovered private keys
+	\end{enumerate}
+\end{exer}

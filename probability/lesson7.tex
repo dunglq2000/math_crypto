@@ -1,0 +1,193 @@
+\section*{Занятие 7}
+\begin{exercise}[1]
+	Если $x_1 = 1$, то только выбрать нужный ключ с вероятностью $p_1 = P(X=1) = \frac{1}{5}$ \\ Если $x_2 = 2$, то $p_2 = P(X=2) = \frac{4}{5} \cdot \frac{1}{5}$ \\ Если $x_3 = 3$, то $p_3 = P(X=3) = \Big(\frac{4}{5}\Big)^2 \cdot \frac{1}{5}$ \\ $\cdots$ \\ Если $x_n = n$, $p_n = P(X=n) = \Big(\frac{4}{5}\Big)^{n-1} \cdot \frac{1}{5}$
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c |}
+			\hline
+			X & 1 & 2 & 3 & $\cdots$ & $n$ & $\cdots$ \\
+			\hline
+			P & 1/5 & $(4/5) \cdot (1/5)$ & $(4/5)^2 \cdot (1/5)$ & $\cdots$ & $(4/5)^{n-1} \cdot (1/5)$ & $\cdots$ \\
+			\hline
+		\end{tabular}
+	\end{center}
+	Значит $M(X) = \sum_{i=1}^{n} i \cdot \Big(\frac{4}{5}\Big)^{i-1} \cdot \frac{1}{5}$, когда $n \rightarrow \infty$
+	
+	Смотрим полином $1 + x + x^2 + \cdots + x^n$. У нас есть
+	\begin{align*}
+		1 + x + x^2 + x^3 + \cdots + x^n & = \frac{x^{n+1} - 1}{x-1} \\ \Leftrightarrow (1 + x + x^2 + x^3 + \cdots + x^n)' & = \Big(\frac{x^{n+1} - 1}{x-1}\Big)' \\ \Leftrightarrow 0 + 1 + 2 \cdot x + 3 \cdot x^2 + \cdots + n \cdot x^{n-1} & = \frac{(n+1) \cdot x^n \cdot (x-1) - (x^{n+1}-1) \cdot 1}{(x-1)^2} \\ \Leftrightarrow 1 + 2 \cdot x + 3 \cdot x^2 + \cdots + n \cdot x^{n-1} & = \frac{n \cdot x^{n+1} - (n+1) \cdot x^n + 1}{(x-1)^2}
+	\end{align*}
+	Пусть $x=4/5$ и $n \rightarrow \infty$, мы получим
+	\begin{align*}
+		\lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \Big(\frac{4}{5}\Big)^{i-1} \cdot \frac{1}{5} & = \frac{1}{5} \lim_{n\to\infty} i \cdot \Big(\frac{4}{5}\Big)^{i-1} \\ & = \frac{1}{5} \cdot \lim_{n\to\infty}\frac{n \cdot (4/5)^{n+1} - (n+1) \cdot (4/5)^n + 1}{(4/5-1)^2}
+	\end{align*}
+	И у нас есть $$\lim_{n\to\infty} n \cdot (4/5)^{n+1} = \lim_{n\to\infty} (n+1) \cdot (4/5)^n = 0$$
+	Поэтому, 
+	$$\frac{1}{5} \lim_{n\to\infty} \frac{n \cdot (4/5)^{n+1} - (n+1) \cdot (4/5)^n + 1}{(4/5-1)^2} = \frac{1}{5} \cdot \frac{1}{(1/5)^2} = 5$$
+\end{exercise}
+
+\begin{exercise}[2] На электронное реле воздействует случайное напряжение, имеющее плотность вероятности $f(x) = \frac{x}{\sigma^2} \cdot \exp\{-\frac{x^2}{2\sigma^2}\}$, $x \geq 0$. Реле срабатывает всякий раз, когда напряжение на его входе превышает 3 В. Какова вероятность срабатывания реле?
+	
+	У нас есть $f(x) = \frac{x}{\sigma^2} \cdot \exp\{-\frac{x^2}{2\sigma^2}\}$ \\ Поэтому $$P(X > 3) = \int_{3}^{+\infty} \frac{x}{\sigma^2} \cdot exp\{-\frac{x^2}{2\sigma^2}\}\,dx$$
+	Пусть $t=\frac{x^2}{2\sigma^2} \Rightarrow \,dt = \frac{x}{\sigma^2} \,dx$. Если $x=+\infty \Rightarrow t = +\infty$ и если $x=3 \Rightarrow t = \frac{9}{2\sigma^2}$
+	\begin{align*}
+		\int_{3}^{+\infty} \frac{x}{2\sigma^2} \cdot \exp\{-\frac{x^2}{\sigma^2}\} \,dt & = \int_{9/(\sigma^2)}^{+\infty} e^{-t} \,dt \\ & = -e^{-t} |^{+\infty}_{9/(\sigma^2)} \\ & = -e^{-\infty} + e^{-9/(\sigma^2)} \\ & = 0 + e^{-9/(\sigma^2)} \\ & = e^{-9/(\sigma^2)}
+	\end{align*}
+\end{exercise}
+
+\begin{exercise}[3]
+	Пусть $x$ - число монет по 10 копеек и $y$ - число монет по 50 копеек $\Rightarrow x + y = 4$ и $0 \leq x \leq 5, 0 \leq y \leq 3$ \\ $X$ - сумма вынутых копеек $\Rightarrow X = 10x + 50y$
+	\begin{center}
+		\begin{tabular}{| c  | c | c | c | c |}
+			\hline
+			x  & 1 & 2 & 3 & 4 \\
+			\hline
+			y  & 3 & 2 & 1 & 0 \\
+			\hline
+			X & 160 & 120 & 80 & 40 \\
+			\hline
+		\end{tabular}
+	\end{center} 
+	Отсюда, мы получим закон распределения случайной $X$
+	\begin{center}
+		\begin{tabular}{|c | c | c | c | c |}
+			\hline
+			X & 40 & 80 & 120 & 160 \\ \hline
+			P & $\frac{C^4_5 \cdot C^0_3}{C^4_8} = \frac{1}{14}$ & $\frac{C^3_5 \cdot C^1_3}{C^4_8} = \frac{3}{7}$ & $\frac{C^2_5} \cdot C^2_3{C^4_8} = \frac{3}{7}$ & $\frac{C^1_5 \cdot C^3_3}{C^4_8} = \frac{1}{14}$ \\ \hline
+		\end{tabular}
+	\end{center}
+\end{exercise}
+
+\begin{exercise}[4]
+	$f(x) = 0,002e^{-0,002x}$ при $x \geq 0$, $f(x) = 0$ при $x < 0$
+	
+	Найти функцию распределения:
+	\begin{itemize}
+		\item При $x < 0$
+		$$F(x) = P(X \leq 0) = \int_{-\infty}^{0}f(x)\,dx = \int_{-\infty}^{0}0\,dx = 0$$
+		\item При $x \geq 0$
+		\begin{align*}
+			F(x) = P(X \leq 0) & = \int_{-\infty}^{x}f(x)\,dx \\ & = \int_{-\infty}^{0}0\,dx + \int_{0}^{x}0,002e^{-0,002x}\,dx \\ & = 0 + \int_{0}^{x}e^{-0,002x}\,d(0,002x) \\ & = -e^{-0,002x}\Big|^{x}_{0} \\ & = -e^{-0,002x} + e^{0} \\ & = 1 - e^{-0,002x}
+		\end{align*}
+	\end{itemize}
+	Вероятность того, что предохранитель безотказно проработает 1000 часов
+		$$F(x) = P(X \geq 1000) = F(+\infty) - F(1000) = 1 - (1 - e^{-0,002 \cdot 1000}) = e^{-2}$$
+\end{exercise}
+
+\begin{exercise}[5]
+	Пусть $X$ - сумма выпавших очков. Поэтому $$X \in \{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\}$$
+	\begin{itemize}
+		\item $X=2=1+1$, выбрать очку 1 (первый кубик) и очку 1 (второй кубик) \\ $P(X=2) = \frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}$
+		\item $X=3=1+2=2+1$, выбрать очку 1 (первый кубик) и очку 2 (второй кубик), или обратно \\ $P(X=3) = 2 \cdot \frac{1}{6} \cdot \frac{1}{6} = \frac{1}{18}$
+		\item $X=4=2+2=1+3=(3+1)$ \\ $P(X=4) = \frac{1}{6} \cdot \frac{1}{6} + 2 \cdot \frac{1}{6} \cdot \frac{1}{6} = \frac{1}{12}$
+		\item $X=5=2+3=(3+2)=1+4=(4+1)$ \\ $P(X=5) = \frac{1}{9}$
+		\item И далее $\cdots$
+	\end{itemize}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			$X$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline
+			$P$ & $\frac{1}{36}$ & $\frac{1}{18}$ & $\frac{1}{12}$ & $\frac{1}{9}$ & $\frac{5}{36}$ & $\frac{1}{6}$ & $\frac{5}{36}$ & $\frac{1}{9}$ & $\frac{1}{12}$ & $\frac{1}{18}$ & $\frac{1}{36}$ \\ \hline
+		\end{tabular}
+	\end{center}
+	Математическое ожидание
+	$$M(\xi) = 2 \cdot \frac{1}{36} + 3 \cdot \frac{1}{18} + \cdots + 12 \cdot \frac{1}{36} = 14 \cdot \Big(\frac{1}{36} + \frac{1}{18} + \frac{1}{12} + \frac{1}{9} + \frac{5}{16}\Big) + 7 \cdot \frac{1}{6} = 7$$
+\end{exercise}
+
+\begin{exercise}[6]
+	Чтобы выбирать шары до тех пор, пока не будет вынут черный шар, у нас есть 4 способа
+	\begin{itemize}
+		\item 0 белых шара: $A^0_3 C^1_2$
+		\item 1 белый шар: $A^1_3 C^1_2$
+		\item 2 белых шара: $A^2_3 C^1_2$
+		\item 3 белых шара: $A^3_3 C^1_2$
+	\end{itemize}
+	Мы получим $| \Omega | = A^0_3 C^1_2 + A^1_3 C^1_2 + A^2_3 C^1_2 + A^3_3 C^1_2 = 32$ \\ и закон распределения с $X$ - количество белых шара
+	\begin{center}
+		\begin{tabular}{|c | c | c | c | c |}
+			\hline
+			$X$ & 0 & 1 & 2 & 3 \\ \hline
+			$P$ & $\frac{A^0_3 C^1_2}{32} = \frac{1}{16}$ & $\frac{A^1_3 C^1_2}{32} = \frac{3}{16}$ & $\frac{A^2_3 C^1_2}{32} = \frac{3}{8}$ & $\frac{A^3_3 C^1_2}{32} = \frac{3}{8}$ \\ \hline
+		\end{tabular}
+	\end{center}
+	Поэтому
+	$$M(\xi) = 0 \cdot \frac{1}{16} + 1 \cdot \frac{3}{16} + 2 \cdot \frac{3}{8} + 3 \cdot \frac{3}{8} = \frac{33}{16} \approx 2$$
+\end{exercise}
+
+\begin{exercise}[7]
+	\begin{enumerate}
+		\item [(a)] Функция распределения величины $X$
+		\begin{itemize}
+			\item При $x < 0$
+			$$F(x) = P(X \leq x) = \int_{-\infty}^{x}0\,dx = 0$$
+			\item При $x \in [0,\pi]$
+			\begin{align*}
+				F(x) = P(X \leq x) & = \int_{-\infty}^{x}f(x)\,dx \\ & = \int_{-\infty}^{0}0\,dx + \int_{0}^{x}0,5\sin x\,dx \\ & = 0 - 0,5\cos x\Big|^x_0 = -0,5(\cos x-\cos 0) \\ & = 0,5(1-\cos x)
+			\end{align*}
+			\item При $x > \pi$
+			\begin{align*}
+				F(x) = P(X \leq x) & = \int_{-\infty}^{x}f(x) \,dx \\ & = \int_{-\infty}^{0}0\,dx + \int_{0}^{\pi}0,5\sin x\,dx + \int_{\pi}^{x}0\,dx \\ & = 0 + \int_{0}^{\pi}0,5\sin x\,dx \\ & = -0,5 \cos x \Big|^{\pi}_0 \\ & = -0,5(\cos \pi - \cos 0) = -0,5 (-1 - 1) = 1
+			\end{align*}
+		\end{itemize}
+		\item [(б)] математическое ожидание этой величины \\ Так как $f(x) = 0$ при $x \not\in [0, \pi]$, мы получим математическое ожидание $M(\xi) = \int_{0}^{\pi}x \cdot 0,5\sin x\,dx = 0,5 \int_{0}^{\pi} x \sin x\,dx$ \\  Пусть $u = x$ и $\sin x \,dx = \,dv \Rightarrow \,du = \,dx$ и $-\cos x = v$. Поэтому
+		\begin{align*}
+			\int_{0}^{\pi} x \sin x\,dx & = -x \cos x \Big|^{\pi}_{0} - \int_{0}^{\pi} -\cos x \,dx \\ & = -(\pi \cos \pi - 0 \cos 0) + \int_{0}^{\pi}\cos x\,dx \\ & = \pi + \sin x \Big|^{\pi}_{0} = \pi
+		\end{align*}
+		$$\Rightarrow 0,5 \int_{0}^{\pi}x \sin x\,dx = 0,5 \pi = \pi/2$$
+	\item [(в)] Вероятность попадания в интервал $[0, \pi/3]$ \\ $P(0 \leq \xi \leq \pi/3) = F(\pi/3) - F(0) = 0,5(1-\cos \frac{\pi}{3}) - 0,5(1-\cos 0) = \frac{1}{4}$
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[8]
+	Пусть $X$ - количество раз бросают монету. У нас есть:
+	\begin{itemize}
+		\item $X=1$: выпадение герба. $P(X=1) = \frac{1}{2}$
+		\item $X=2$: цифр - герб. $P(X=2) = \frac{1}{2^2}$
+		\item $X=3$: цифр - цифр - герб. $P(X=3) = \frac{1}{2^3}$
+		\item $X=4$: цифр - цифр - цифр - герб, либо цифр четыре раза. \\ $P(X=4) = 2 \cdot \frac{1}{2^4} = \frac{1}{2^3}$
+	\end{itemize}
+	$M(\xi) = 1 \cdot \frac{1}{2} + 2 \cdot \frac{1}{2^2} + 3 \cdot \frac{1}{2^3} + 4 \cdot \frac{1}{2^3} = \frac{15}{8}$
+\end{exercise}
+
+\begin{exercise}[9]
+	$f(x) = \frac{1}{\pi} \cdot \frac{1}{1+x^2}$. За один раз
+	\begin{align*}
+		P(-1 < x < 1) & = \int_{-1}^{1}f(x)\,dx = \int_{-1}^{1}\frac{1}{\pi} \cdot \frac{1}{1+x^2} \,dx \\ & = \frac{1}{\pi} \cdot \arctan x\Big|^{1}_{-1} = \frac{1}{\pi} \cdot \Big(\frac{\pi}{4} - \frac{-\pi}{4}\Big) = \frac{1}{2}
+	\end{align*}
+	Отсюда, вероятность того, что при трех независимых наблюдения этой случайной величины
+	$P = \Big(\frac{1}{2}\Big)^3 = \frac{1}{8}$
+\end{exercise}
+
+\begin{exercise}[10] Случайная величина $X$ - погрешность измерительного прибора распределена по нормальному закону распределения с дисперсией $\sigma^2 = 25$ м$B^2$. Систематическая погрешность прибора отсутствует. Найдите вероятность того, что при пяти независимых измерениях ошибка измерения хотя бы один раз превзойдет по модулю 10 мВ
+	
+	Пусть $A$ = \{при пяти независимых измерениях ошибка измерения хотя бы один раз превзойдет по модулю 10 мВ\} \\ $\Rightarrow \overline{A}$ = \{при пяти раз нет ошибки\}
+	
+	Используем $P(|X - m| < \alpha) = 2 \Phi\Big(\frac{\alpha}{\sigma}\Big)$. Здесь $\alpha=10$ и $\sigma^2 = 25$ \\ $\Rightarrow P(|X-m| < 10) = 2 \Phi \Big(\frac{10}{5}\Big) = 2 \cdot 0,4773 = 0,9546$
+	
+	Отсюда $P(A) = 1 - P(\overline{A}) = 1 - 0,9546^5 \approx 0,21$
+\end{exercise}
+
+\begin{exercise}[11] $\sigma = 20$, $\alpha=50$
+	
+	$P(|X - m| < 50) = 2 \cdot \Phi \Big(\frac{50}{20}\Big) = 2 \cdot 0,4938 = 0,9876$
+\end{exercise}
+
+\begin{exercise}[12]
+	$\varphi(z) = M[\cos(zX) + i\sin(zX)]$ \\ У нас есть $P(X=1) = \frac{1}{2}$ и $P(X=-1) = \frac{1}{2}$ \\ $\Rightarrow \varphi(z) = \frac{1}{2} \cdot [\cos(z \cdot 1) + i \sin(z \cdot 1)] + \frac{1}{2} \cdot [\cos(z \cdot (-1)) + i\sin(z \cdot (-1))] = \frac{1}{2} \cdot (\cos z + \cos(-z) + i[\sin z + \sin(-z)])$ \\ Но $\cos(z) = \cos(-z)$ и $\sin(-z) = -\sin(z)$ \\ $\Rightarrow \varphi(z) = \frac{1}{2} \cdot (\cos z + \cos z) = \cos z$
+\end{exercise}
+
+\begin{exercise}[13]
+	Так как случайная величина равномерно распределена отрезке $[a, b]$, у нас есть её функция плотности вероятности $f(x) = \frac{1}{b-a}$ \\ Поэтому, характеристическая функция
+	\begin{align*}
+		\varphi(z) & = \int_{a}^{b} e^{izx}\,dF(x) \\ & = \int_{a}^{b} e^{izx} \cdot f(x) \,dx \\ & = \frac{1}{b-a} \int_{a}^{b} e^{izx} \,dx \\ & = \frac{1}{b-a} \cdot \frac{e^{izx}}{iz} \bigg|^{b}_{a} \\ & = \frac{1}{b-a} \cdot \frac{e^{biz} - e^{aiz}}{iz}
+	\end{align*}
+\end{exercise}
+
+\begin{exercise}[14]
+	$P(X=k) = \frac{\lambda^k \cdot e^{-\lambda}}{k!}$ , $k=0,1,2,\cdots$ \\ У нас есть $\psi(z) = M(z^X)=\sum_{k=0}^{\infty}p_k x^k = \sum_{k=0}^{\infty} \frac{e^{-\lambda} \cdot \lambda^k \cdot z^k}{k!}$
+	\begin{align*}
+		\Rightarrow \psi'(z) & = e^{-\lambda} \Big[\frac{\lambda^k \cdot k z^{k-1}}{k!} + \frac{\lambda^{k-1} \cdot (k-1) z^{k-2}}{(k-1)!} + \cdots + \frac{\lambda^1 \cdot 1 \cdot z^0}{1!} + 0\Big] \\ & = e^{-\lambda} \cdot \lambda \Big[\frac{(\lambda z)^{k-1}}{(k-1)!} + \frac{(\lambda z)^{k-2}}{(k-2)!} + \cdots + \frac{(\lambda z)^0}{0!}\Big] \\ & = e^{-\lambda} \cdot \lambda \cdot e^{\lambda z}
+	\end{align*}
+	$\Rightarrow M(X) = \psi'(1) = e^{-\lambda} \cdot \lambda \cdot e^{\lambda} = \lambda$
+	
+	Аналогично, мы получим $\psi''(1)= \lambda^2$ и $D(X) = \psi''(1) + \psi'(1) - (\psi'(1))^2 = \lambda^2 + \lambda - \lambda^2 = \lambda$
+\end{exercise}

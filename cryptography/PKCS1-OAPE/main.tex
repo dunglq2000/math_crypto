@@ -1,0 +1,27 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz,circuitikz}
+
+\usetikzlibrary{decorations.markings}
+\usetheme{Boadilla}
+\usecolortheme{orchid}
+\setbeamertemplate{footline}[frame number]
+\beamertemplatenavigationsymbolsempty
+
+
+\begin{document}
+	\tikzstyle{block} = [rectangle,	draw, minimum height=1cm,	text centered]
+	\tikzstyle{dots} = [decorate, draw]
+\begin{frame}
+	\frametitle{MGF (Masked Generation Function)}
+	Input: Seed, dLen $\Rightarrow$ Output: Mask (dLen [bytes])
+	
+	\begin{tikzpicture}
+		\node (zero) [block] {(0, 0, 0, 0)};
+		\node (first) [block, right of=zero, xshift=2cm] {(0, 0, 0, 1)};
+		\node (second) [dots, right of=first, xshift=2cm] {};
+		\node (third) [block, right of=second, xshift=2cm] {(0, 0, 0, $m$)};
+	\end{tikzpicture}
+\end{frame}
+\end{document}

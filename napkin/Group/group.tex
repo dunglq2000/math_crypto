@@ -1,0 +1,64 @@
+\chapter{Nhóm}
+
+\section{Định nghĩa nhóm}
+
+Một \textcolor{blue}{nhóm} $G=(G, \star)$ gồm một tập hợp các phần tử $G$ và toán tử 2 ngôi $\star$ trên $G$ thỏa các điều kiện:
+
+\begin{enumerate}
+	\item \textcolor{blue}{Tính đóng} (\textbf{closure}): $\forall a$ và $b \in G$, $a \star b \in G$
+	\item \textcolor{blue}{Phần tử đơn vị} (\textbf{identity element}): là phần tử $e \in G$ sao cho $e \star a = e \star e = a$,  $\forall a \in G$
+	\item \textcolor{blue}{Phần tử nghịch đảo} (\textbf{inverse}): với mỗi phần tử $g \in G$, tồn tại phần tử $h \in G$ thỏa mãn $h \star g = g \star h = e$. $h$ được gọi là phần tử nghịch đảo của $g$
+	\item \textcolor{blue}{Tính kết hợp} (\textbf{associative}): $\forall a, b, c \in G$, ta có $(a \star b) \star c = a \star (b \star c)$
+\end{enumerate} 
+
+Khi nhóm có thêm \textcolor{blue}{Tính giao hoán} (\textbf{commutative}), tức là $\forall a, b \in G$, $a \star b = b \star a$, nhóm được gọi là \textcolor{blue}{nhóm Abel} (\textbf{Abelian Group}).
+
+\section{Tính chất của nhóm}
+
+\begin{enumerate}
+	\item [(a)] Phần tử đơn vị của nhóm là duy nhất
+	\item [(b)] Nghịch đảo của mỗi phần tử là duy nhất
+	\item [(c)] $\forall g \in G, (g^{-1})^{-1} = g$
+	\item [(d)] (nghịch đảo của tích): Cho nhóm $G$ và $a,b \in G$, khi đó $(ab)^{-1}=b^{-1} a^{-1}$
+	\item [(d)] (phép nhân bên trái là song ánh): Cho nhóm $G$ và chọn 1 phần tử $g \in G$. Khi đó ánh xạ $G \rightarrow G$ cho bởi $x \rightarrow gx$ là 1 song ánh
+\end{enumerate}
+
+\section{Isomorphisms}
+
+\begin{definition}
+	Cho $G=(G,\star)$ và $H=(H, \star)$ là các nhóm. Song ánh $\phi: G \rightarrow H$ được gọi là \textcolor{blue}{isomorphism} nếu
+	
+	\begin{center}
+	 $\phi(g_1 \star g_2) = \phi (g_1) \star \phi (g_2)$ với mọi $g_1, g_2 \in G$
+	 \end{center}
+ 
+ Nếu tồn tại một isomorphism từ $G$ tới $H$, thì $G$ và $H$ được gọi là \textcolor{blue}{isomorphic} và ký hiệu $G \cong H$
+ 
+ Cần chú ý rằng trong định nghĩa trên, vế trái $\phi(g_1 \star g_2)$ dùng toán tử trên $G$ còn vế phải $\phi(g_1) \star \phi(g_2)$ dùng toán tử trên $H$
+\end{definition}
+
+\begin{example} (Ví dụ về isomorphism)
+	
+	Cho $G$ và $H$ là nhóm. Ta có các isomorphism:
+	\begin{enumerate}[(a)]
+		\item $\mathbb{Z} \cong 10 \mathbb{Z}$
+		\item Có một isomorphism
+		\begin{equation*} 
+			G \times H \cong H \times G 
+		\end{equation*} cho bởi ánh xạ $(g, h) \mapsto (h, g)$
+	\item Identity map id: $G \rightarrow G$ là isomorphism, vì vậy $G \cong G$
+	\item Có một isomorphism khác của $\mathbb{Z}$ lên chính nó là: chuyển $x$ thành $-x$
+	\end{enumerate}
+\end{example}
+
+\begin{example} (Primitive roots (căn nguyên thủy) modulo 7)
+	
+	Trong ví dụ này ta chứng minh $\mathbb{Z}/6 \mathbb{Z} \cong (\mathbb{Z}/7 \mathbb{Z})^{\times}$. Ánh xạ là \begin{equation*} \phi(a \bmod 6) = 3^a \bmod 7 \end{equation*} 
+	Để kiểm tra đây là isomorphism:
+	\begin{itemize}
+		\item Đây là một ánh xạ, vì khi $a \equiv b \pmod 6$ thì $3^a \equiv 3^b \pmod 7$ (định lý Fermat nhỏ)
+		\item Ánh xạ là song ánh (liệt kê)
+		\item Vì $3^{a+b} \equiv 3^a 3^b \pmod 7$, tương đương $\phi(a+b) = \phi(a) \phi(b)$	
+	\end{itemize}
+	
+\end{example}

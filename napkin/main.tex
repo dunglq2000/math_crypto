@@ -1,0 +1,15 @@
+\documentclass{report}
+\usepackage[utf8]{vietnam}
+\usepackage{xcolor}
+\usepackage{import}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumerate}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Định nghĩa}[section]
+\newtheorem*{example}{\textcolor{brown}{Ví dụ \thedefinition}}
+\begin{document}
+	\import{./}{titlepage}
+	\tableofcontents{}
+	\import{Group/}{start.tex}
+\end{document}

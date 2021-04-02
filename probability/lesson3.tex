@@ -56,7 +56,7 @@
 		\end{circuitikz}
 		
 		\begin{align*}
-			P(A) & = P(A_1 + A_2) P(A_3) P(A_4 + A_5) \\ & = [1 - (1-P(A_1))(1-P(A_2))] \cdot P(A_3) \cdot [1-(1-P(A_4))(1-P(A_5))] \\ & = (1-(1-0,8)^2) \cdot 0,8 \cdot (1-(1-0,8)^2) \\ & = 0,73728 \approx 0,74
+			P(A) = & P(A_1 + A_2) P(A_3) P(A_4 + A_5) \\ = & [1 - (1-P(A_1))(1-P(A_2))] \cdot P(A_3) \\ & \times [1-(1-P(A_4))(1-P(A_5))] \\ = & (1-(1-0,8)^2) \cdot 0,8 \cdot (1-(1-0,8)^2) \\ = & 0,73728 \approx 0,74
 		\end{align*}
 	
 		\item [(в)] Пусть $A$ - вероятность безотказной работы
@@ -125,7 +125,7 @@
 	
 	\begin{enumerate}
 		\item $A$ = \{вынуть только один белый шар\} \\ $\Rightarrow$ выбрать белый шар из 1-ой урны, или 2-ой, или 3-ей \begin{align*}
-			\Rightarrow P(A) & = P(D_1 \cdot \overline{D_2} \cdot \overline{D_3} + \overline{D_1} \cdot D_2 \cdot \overline{D_3} + \overline{D_1} \cdot \overline{D_2} \cdot D_3) \\ & = P(D_1)[1-P(D_2)][1-P(D_3)] + [1-P(D_1)] P(D_2) [1-P(D_3)] + [1-P(D_1)] [1-P(D_2)] P(D_3) \\ & = \frac{2}{5} \cdot \Big(1 - \frac{1}{3}\Big) \cdot \Big(1 - \frac{3}{4}\Big) + \Big(1- \frac{2}{5}\Big) \cdot \frac{1}{3} \cdot \Big(1 - \frac{3}{4}\Big) + \Big(1 - \frac{2}{5}\Big) \cdot \Big(1 - \frac{1}{3}\Big) \cdot \frac{3}{4} = \frac{5}{12}
+			\Rightarrow P(A) = & P(D_1 \cdot \overline{D_2} \cdot \overline{D_3} + \overline{D_1} \cdot D_2 \cdot \overline{D_3} + \overline{D_1} \cdot \overline{D_2} \cdot D_3) \\ = & P(D_1)[1-P(D_2)][1-P(D_3)] + [1-P(D_1)] P(D_2) [1-P(D_3)] \\ & + [1-P(D_1)] [1-P(D_2)] P(D_3) \\ = & \frac{2}{5} \cdot \Big(1 - \frac{1}{3}\Big) \cdot \Big(1 - \frac{3}{4}\Big) + \Big(1- \frac{2}{5}\Big) \cdot \frac{1}{3} \cdot \Big(1 - \frac{3}{4}\Big) \\ & + \Big(1 - \frac{2}{5}\Big) \cdot \Big(1 - \frac{1}{3}\Big) \cdot \frac{3}{4} = \frac{5}{12}
 		\end{align*}
 		\item $B$ - \{вынуть хотя бы один белый шар\} \\ $\Rightarrow \overline{B}$ - не вынуть ни одного белого шара. \\ $\Rightarrow \overline{B} = \overline{D_1} \cdot \overline{D_2} \cdot \overline{D_3}$ \\ $\Rightarrow P(\overline{B}) = P(\overline{D_1}) P(\overline{D_2}) \cdot P(\overline{D_3}) = \Big(1 - \frac{2}{5}\Big) \cdot \Big(1-\frac{1}{3}\Big) \cdot \Big(1 - \frac{3}{4}\Big) = \frac{1}{10}$ \\ $\Rightarrow P(B) = 1 - P(\overline{B}) = 1 - 0,1 = 0,9$
 		\item $C$ - \{Вынуть шары различных цветов\} \\ Здесь у нас есть 4 случая:
@@ -139,6 +139,6 @@
 	\end{enumerate}
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}[9]
 	$| \Omega | = C^2_{36}$ \\ Пусть $A$ - событие выбрать 2 красной масти \\ У нас есть итого 18 (36/2) красных мастей, поэтому $P(A) = \frac{C^2_{18}}{C^2_{36}} = \frac{17}{70}$
 \end{exercise}

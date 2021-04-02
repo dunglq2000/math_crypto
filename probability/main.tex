@@ -2,12 +2,14 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage{amsmath,amssymb,amsthm,enumitem,fourier, empheq}
+\usepackage{amsmath,amssymb,amsthm,enumitem, empheq}
 \usepackage{exercise}
-\usepackage{pgf,tikz}
+\usepackage{pgf,tikz,tkz-tab}
 \usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{circuitikz}
+\usepackage{hyphenat}
+\usepackage{pdfpages}
 
 \usetikzlibrary{arrows}
 \usetikzlibrary{circuits}
@@ -18,10 +20,28 @@
 
 \theoremstyle{definition}
 \newtheorem*{exercise}{Упражение}
+%\DeclareMathOperator{\tg}{tg}
 
 \begin{document}
 	\maketitle
 	\input{lesson2.tex}
+	\newpage
 	\input{lesson3.tex}
+	\newpage
 	\input{lesson4.tex}
+	\newpage
+	\input{lesson5.tex}
+	\newpage
+	\input{lesson6.tex}
+	\newpage
+	\input{lesson7.tex}
+	\newpage
+	\input{lesson8.tex}
+	\newpage
+	\textbf{Ещё не решил}:
+	\begin{itemize}
+		\item Занятие 3: 7б, 10
+		\item Занятие 5: 2, 8
+		\item Занятие 8: 13
+	\end{itemize}
 \end{document}
