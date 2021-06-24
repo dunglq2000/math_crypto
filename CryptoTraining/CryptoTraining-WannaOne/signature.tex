@@ -1,0 +1,19 @@
+\begin{frame}{Chữ ký điện tử}
+Khi gửi tài liệu (document) đi, chúng ta sẽ thêm vào chữ ký số của file đó (vào phía sau file chẳng hạn)
+
+Khi người nhận được tài liệu sẽ tiến hành kiểm tra bằng việc kiểm tra chữ ký đó, từ đó biết được tài liệu có bị lỗi không
+
+\begin{tikzpicture}[node distance=1.25cm]
+\node (doc) [data] {Tài liệu (Document};
+\node (sign) [function, right of=doc, xshift=1.5cm] {Ký (Sign)};
+\node (true) [data, right of=sign, xshift=1.5cm] {Đúng};
+\node (signature) [data, below of=sign, yshift=-1cm] {Chữ ký};
+\node (verify) [function, right of=signature, xshift=1.5cm] {Kiểm tra (Verify)};
+\node (false) [data, right of=verify, xshift=1.5cm] {Sai};
+\draw [arrow] (doc) -- (sign);
+\draw [arrow] (sign) -- (signature);
+\draw [arrow] (signature) -- (verify);
+\draw [arrow] (verify) -- (true);
+\draw [arrow] (verify) -- (false);
+\end{tikzpicture}
+\end{frame}

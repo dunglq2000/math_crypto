@@ -1,0 +1,86 @@
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Nội dung}
+\begin{enumerate}
+    \item Giới thiệu mật mã học (Cryptography)
+    \item Mật mã học có gì?
+    \item Kiến thức nền tảng
+    \begin{enumerate}
+        \item Khoa học máy tính
+        \item Toán
+    \end{enumerate}
+\item Luyện tập
+    \end{enumerate}
+\end{frame}
+\begin{frame}{Giới thiệu}
+    Mật mã học là lĩnh vực sử dụng các lý thuyết toán nhằm đảm bảo an toàn thông tin.
+    
+    Mật mã học được dùng để: \begin{enumerate}
+        \item Khiến dữ liệu bình thường trở nên "không đọc được" và không bị kẻ tấn công, bên thứ ba, ... đọc trộm
+        \item Tạo chữ ký điện tử để xác thực chủ sở hữu, thời hạn sử dụng, ..... cho các đối tượng điện tử (tài liệu, trang web, phần mềm, ....)
+        \item ......
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Mật mã học có gì?}
+\begin{enumerate}
+    \item Mã hóa đối xứng cổ điển
+    \item Mã hóa đối xứng hiện đại
+    \item Mã hóa khóa công khai
+    \item Mã chứng thực thông điệp. Hàm băm
+    \item Chữ kí điện tử
+    \item Giao thức
+    \item Phương pháp trao đổi khóa
+    \item \textbf{Các phương pháp phá mã}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Thành phần trong một hệ mật mã}
+Hệ mật mã (cryptosystem) là 1 hệ thống gồm:
+
+\begin{itemize}
+    \item Bản rõ (Plaintext): dữ liệu bình thường, đọc được
+    \item Bản mã (Ciphertext): dữ liệu không đọc được
+    \item Mã hóa (Encrypt): 1 hàm $E(P, K_1)$ với $P$ là plaintext, $K_1$ là khóa (key) để chuyển dữ liệu đọc được thành không đọc được
+    \item Giải mã (Decrypt): 1 hàm $D(C, K_2)$ với $C$ là ciphertext, $K_2$ là khóa (key) để chuyển dữ liệu đã bị mã hóa trở về dữ liệu đọc được ban đầu
+    \item Key 1, Key 2: khóa, dùng để mã hóa và giải mã
+\end{itemize}
+    \begin{tikzpicture}[node distance=1.25cm]
+    \node (pt1) [data] {Bản rõ (Plaintext)};
+    \node (enc) [function, right of=pt1, xshift=1cm, text width=1cm] {Mã hóa};
+    \node (ct) [data, right of=enc, xshift=1cm] {Bản mã (Ciphertext)};
+    \node (dec) [function, right of=ct, xshift=1cm, text width=1cm] {Giải mã};
+    \node (pt2) [data, right of=dec, xshift=1cm] {Bản rõ (Plaintext)};
+    \node (key1) [data, below of=enc, yshift=-0.5cm] {Key 1};
+    \node (key2) [data, below of=dec, yshift=-0.5cm] {Key 2};
+    \draw [arrow] (pt1) -- (enc);
+    \draw [arrow] (key1) -- (enc);
+    \draw [arrow] (enc) -- (ct);
+    \draw [arrow] (ct) -- (dec);
+    \draw [arrow] (key2) -- (dec);
+    \draw [arrow] (dec) -- (pt2);
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Phân loại hệ mật mã}
+Theo sơ đồ trên:
+\begin{enumerate}
+    \item Nếu $K_1 = K_2$ gọi là mã đối xứng (Symmetric)
+    \begin{itemize}
+        \item Mã hóa cổ điển: Caesar, Vigenere, Hill, French Fence, ....
+        \item Mã hóa hiện đại:
+        \begin{itemize}
+        \item Mã dòng: chia dữ liệu thành các đoạn có độ dài bằng nhau, xem các đoạn đó là 1 "dòng" và mã hóa dòng đó
+        \item Mã khối: chia dữ liệu thành các khối có độ dài bằng nhau (khối cuối có thể ngắn hơn độ dài đó) và mã hóa theo các khối đó
+    \end{itemize}
+    \end{itemize}
+    \item Nếu $K_1 \neq K_2$ gọi là mã bất đối xứng (Assymmetric) \\ Ví dụ: 
+    \begin{itemize}
+        \item RSA (hệ mã được sử dụng rộng rãi trong CTF lẫn thực tế)
+        \item ElGamal
+        \item ...
+    \end{itemize}
+\end{enumerate}
+\end{frame}

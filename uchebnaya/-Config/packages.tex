@@ -6,6 +6,43 @@
 \usepackage{fontspec}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage[square,numbers]{natbib}
+\usepackage{subfigure}
+\usepackage{tabularx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{ctable}
+\usepackage{caption}
+\usepackage{array}
 
 \setmainfont{Times New Roman}
 \renewcommand{\baselinestretch}{1.5}
+\setlist[itemize]{leftmargin=0mm,itemindent=5mm}
+\setlist[enumerate]{leftmargin=0mm,itemindent=5mm}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\usetikzlibrary{shapes.geometric, shapes.multipart, arrows, fit}
+
+\tikzstyle{block} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=white!30]
+\tikzstyle{arrow} = [->,>=stealth]
+\tikzstyle{line} = [draw, -latex', stealth-stealth]
+\tikzstyle{dottedblock} = [draw=black!20!white, line width=2pt, dash pattern=on 1pt off 4pt on 6pt off 4pt, inner sep=6mm, rectangle, rounded corners]
+
+%\addbibresource{mylist.bib}
+\bibliographystyle{unsrtnat}
+
+\renewcommand{\refname}{Список используемых литератур}
+
+\makeatletter
+\renewcommand{\bibsection}{%
+   \section{\refname%
+            \@mkboth{\MakeUppercase{\refname}}{\MakeUppercase{\refname}}%
+   }
+}
+\makeatother
+
+\captionsetup[table]{labelsep=newline,justification=raggedleft,singlelinecheck=false}

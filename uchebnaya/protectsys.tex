@@ -1,0 +1,143 @@
+\section{Криптографическая система защиты}
+Алгоритмы с секретным ключом или с открытым ключом обладают свои достоинства и недостатки. Криптографические системы защита часто используют одновременно два типа системы. В этом участии мы рассмотрим криптографическую систему защиты и пример, который использует протокол HTTPS.
+
+\subsection{Схема системы безопасности}
+
+Пользователь 1 (Алис) и пользователь 2 (Боб) хотят передавать информацию между ними. Алис и Боб согласны один алгоритм с открытым ключом (функция шифрования $E_{pub}$ и её соответственная функция расшифрования $D_{pub}$) и один алгоритм с секретным ключом (функции шифрования и расшифрования соответственно $E_{priv}$ и $D_{priv}$). 
+
+Алгоритм с открытым ключом используется, чтобы передать ключ для алгоритма с секретным ключом.
+
+\begin{enumerate}[noitemsep,nolistsep]
+	\item Алис создает секретный ключ $k_1$ и от этого секретного ключа, Алис вычисляет открытый ключ $k_2$.
+	\item Алис посылает $k_2$ к Бобу.
+	\item Боб создает ключ для алгоритм с секретным ключом $K$ и шифрует его с помощью ключа $k_2$ ($K_e=E_{pub}(k_2, K)$).
+	\item Боб посылает $K_e$ к Алису.
+	\item Алис вычисляет $K$ по формуле $K = D_{pub}(k_1, K_e)$.
+	\item Теперь Алис и Боб обладают ключом $K$, они могут передавать любое сообщение $m$ по формулам $c=E_{priv}(K, m)$ и $m=D_{priv}(K, c)$. 
+\end{enumerate}
+	
+\begin{table}[ht]
+    \caption{Схема системы безопасности}
+	\centering
+	\begin{tabularx}{\textwidth}{
+			| >{\centering\arraybackslash}X |
+			| >{\centering\arraybackslash}X |
+		}
+		\hline
+		\textbf{Алис} & \textbf{Боб} \\
+		\hline\hline
+		\multicolumn{2}{|c|}{\textit{Создание ключом для алгоритма с отрытым ключом}} \\
+		\hline
+		Создание секретный ключ $k_1$ и вычисляет открытый ключ $k_2$ & \\
+		\hline
+		\multicolumn{2}{|c|}{Передача $k_2$ к Бобу} \\
+		\hline\hline
+		\multicolumn{2}{|c|}{\textit{Передача ключ для алгорима с секретным ключом}} \\
+		\hline
+		& Создание ключ $K$ и шифрование его $K_e = E_{pub}(k_2, K)$ \\
+		\hline
+		\multicolumn{2}{|c|}{Передача $K_e$ к Алису} \\
+		\hline
+		Расшифрование ключ по формуле $K=D_{pub}(k_1, K_e)$ &  \\
+		\hline\hline
+		\multicolumn{2}{|c|}{\textit{Передачи сообщений}} \\
+		\hline
+		Сообщение $m$ и шифрование $c=E_{priv}(K, m)$ & \\
+		\hline
+		& Расшифрование $m=D_{priv}(K, c)$ \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\subsection{Схема системы авторизации}
+
+Клиент Алис хочет передавать сообщении с сервером Боб, но не уверен, подделывает ли кто-то сервера. Этот случай называется фишинговой атакой. Для защита от фишинг-атаки, используют эту схему
+
+\begin{enumerate}[noitemsep,nolistsep]
+	\item Одна доверенная сторона, которая называется центром сертификации (англ - certificate authority, СА) создает цифровую сертификацию для сервера.
+	\item В сертификации есть открытый ключ, информация о владельце, и цифровая подпись.
+	\item Клиент хочет обменять информации с сервером. Начало, он спросит сервера о сертификации и проверит цифровую подпись, если действительный, клиент начинает обменяет данные с сервером. Если недействительный, клиент кончится.
+\end{enumerate}
+
+\begin{table}[ht]
+    \caption{Схема системы авторизации}
+	\centering
+	\begin{tabularx}{\textwidth}{
+			| >{\centering\arraybackslash}X |
+			| >{\centering\arraybackslash}X |
+		}
+		\hline
+		\textbf{Сервер} & \textbf{Клиент} \\
+		\hline
+		Получить цифровую сертификацию из доверенной стороны & \\
+		\hline
+		& Получить сертификацию из сервера \\
+		\hline
+		& Проверить сертификацию \\
+		\hline
+	\end{tabularx}
+	
+\end{table}
+
+\subsection{Криптографическая система защиты по протоколу HTTPS}
+
+HTTP - это протокол для передачи файлы (как html, рисунки, ...) между компьютерами на сети. Но все данные представляют себя в виде \textit{незашифрованный текст}, поэтому рискованно. С помощью протокол SSL/TLS, файлы зашифруются для безопасности и авторизации. Тогда HTTPS = HTTP + SSL/TLS
+
+Теперь рассмотрим основные этапы протокола HTTPS между сервером и клиентом.
+
+Этап 1: проверка сервера и обмен ключ для шифрования сообщений между сервером и клиентом.
+	\begin{itemize}[label={--},noitemsep,nolistsep]
+		\item Сервер зарегистрирует цифровую сертификацию из доверенной стороны, например, Cloudflare.
+		\item В сертификации есть цифровая попись, алгоритм для проверки цифровой подписи (например, ECDSA), алгоритм для шифрования (например, AES 256 бит), алгоритм для обмена ключа (например, RSA).
+		\item Клиент посылает сообщение в сервер для начала обмена информации, и ждёт ответ от сервера.
+		\item Сервер тогда посылает сертификацию и открытый ключ (алгоритм обмена ключа) в клиент
+		\item Клиент использует алгоритм для проверки подписи (ECDSA), чтобы проверить сертификацию. Если сертификация не действительная или истекшая, клиент закончит передавать информации.
+		\item Потом, клиент генерирует ключ для шифрования (AES 256 бит) и зашифрует его с помощью открытого ключа алгоритма обмена ключа (RSA).
+		\item Клиент посылает шифрованный ключ в сервер.
+	\end{itemize}
+Этап 2: передача сообщений HTTP c помощью криптографии.
+	\begin{itemize}[label={--},noitemsep,nolistsep]
+		\item Сервер расшифрует шифрованный ключ, который получит от клиента.
+		\item Сервер зашифрует каждое сообщение HTTP, которое клиент попросит, по этому ключу и посылает шифрованное сообщение.
+		\item Клиент использует этот ключ, чтобы расшифровать это шифрованное сообщение и покажет на экран.
+	\end{itemize}
+Простой пример HTTPS, использующий ECDSA, AES 256 бит и RSA, показан в рисунке 4. 
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}[node distance=2cm]
+		\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=white!30]
+		\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black, fill=white!30]
+		\tikzstyle{blank} = [rectangle, minimum width=3cm, minimum height=1cm, draw=white]
+		\tikzstyle{arrow} = [thick,->,>=stealth]
+		
+		\node (server) [process] {Сервер};
+		\node (internet) [blank, right of=server, xshift=3cm] {Интернет};
+		\node (client) [process, right of=internet, xshift=3cm] {Клиент};
+		\node (bl1) [blank, below of=server, yshift=-1cm] {};
+		\node (trust) [process, below of=client, yshift=-1cm] {Дорверить Cloudflare};
+		\node (verify) [process, below of=trust] {Проверить сертификацию};
+		\node (valid) [process, below of=verify, yshift=-0.5cm] {\begin{tabular}{c}Поключение \\ ключа AES и \\ шифрование его\end{tabular}};
+		\node (deckey) [process, below of=server, yshift=-5.5cm] {\begin{tabular}{c}Расшифрования \\ шифрованного ключа\end{tabular}};
+		\node (recover) [process, below of=deckey] {Ключ AES};
+		\node (bl3) [blank, below of=valid, yshift=-2.5cm] {};
+		\node (http) [process, below of=recover, yshift=-0.5cm] {\begin{tabular}{c}нормальное HTTP \\ сообщение для \\ передечи index.html\end{tabular}};
+		\node (https) [process, below of=http, yshift=-1cm] {\begin{tabular}{c}
+				зашифрование этого \\ сообщеня HTTP
+		\end{tabular}};
+		\node (plain) [process, below of=bl3, yshift=-1cm] {\begin{tabular}{c}расшифрование \\ шифрованного \\ сообщения\end{tabular}};
+		\node (start) [process, below of=plain, yshift=-1cm] {\begin{tabular}{c}файл index.htm \\ показан на экране\end{tabular}};
+		
+		\draw [arrow] (bl1) -- node [above] {сертификация} node [below] {открытый ключ RSA} (trust);
+		\draw [arrow] (valid) -- node [above] {посылка} node[below]  {шифрованный ключ} (deckey);
+		\draw [arrow] (bl3) -- node [above] {нужен файл inhdex.html} (http);
+		\draw [arrow] (https) -- node [above] {интернет} (plain);
+		\draw [arrow] (trust) -- (verify);
+		\draw [arrow] (verify) -- (valid);
+		\draw [arrow] (deckey) -- (recover);
+		\draw [arrow] (recover) -- (http);
+		\draw [arrow] (http) -- (https);
+		\draw [arrow] (https) -- (plain);
+		\draw [arrow] (plain) -- (start);
+	\end{tikzpicture}
+	\caption{Простая блок-схема протокола HTTPS}
+\end{figure}

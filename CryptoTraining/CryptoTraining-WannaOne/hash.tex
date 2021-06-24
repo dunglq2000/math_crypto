@@ -1,0 +1,19 @@
+\begin{frame}{Hàm băm}
+Hàm băm (Hash) $H(x)$ thỏa mãn các yêu cầu sau:
+\begin{itemize}
+    \item $H$ có thể áp dụng cho các thông điệp $x$ với độ dài bất kì
+    \item Kích thước $h=H(x)$ là cố định và nhỏ
+    \item Tính một chiều: với một $h$ cho trước, không thể tìm lại $x$ thỏa mãn $h=H(x)$ (về mặt thời gian tính toán)
+    \item Tính chống trùng yếu: cho trước một $x$, không thể tìm $y$ thỏa mãn $y \neq x$ và $H(y) = H(x)$
+    \item Tính chống trùng mạnh: không thể tìm ra cặp $(x, y)$ bất kì ($x \neq y$) sao cho $H(x)=H(y)$. Nói cách khác nếu $H(x)=H(y)$ thì chắc chắn $x=y$
+\end{itemize}
+
+Ví dụ, nếu $x$ chứa 512 bit, còn $h$ là 128 bit thì trung bình sẽ có $2^{512}/2^{128}=2^{384}$ thông điệp $x$ có cùng $h$. Tính chống trùng của hàm Hash là yêu cầu rằng việc tìm ra 2 thông điệp có cùng kết quả Hash là rất khó về mặt thời gian tính toán.
+\end{frame}
+\begin{frame}{Ứng dụng của hàm băm}
+\begin{itemize}
+    \item Lưu trữ mật khẩu: trên hệ thống đăng nhập sẽ lưu tên đăng nhập và hash của mật khẩu. Như vậy người quản trị cơ sở dữ liệu sẽ không thể dùng tài khoản của người dùng bất kì để xem trộm thông tin. % Khi người dùng đăng nhập, hệ thống chỉ việc tính hash của mật khẩu nhập vào và so với trên cơ sở dữ liệu
+    \item Đấu giá trực tuyến: cơ chế tương tự lưu trữ mật khẩu
+    \item Download file: nhiều nhà phát hành phần mềm sẽ để kèm theo hash của file thực thi của phần mềm đó. Chúng ta có thể tính hash của file thực thi đã tải về và so sánh với hash được nhà phát hành công bố. % Nếu không giống tức là file tải về không giống file của nhà phát hành (lỗi đường truyền chẳng hạn)
+\end{itemize}
+\end{frame}

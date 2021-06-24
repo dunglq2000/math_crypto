@@ -40,3 +40,28 @@
 		\item [(b)] We have $g_1 \equiv g^{r_1 (p-1)} \pmod N \equiv g^{r_1 (p-1)} \pmod p \equiv 1 \pmod p$ \\ $\Rightarrow p = \gcd(g_1-1, N)$. Similarly, $q = \gcd(g_2-1, N)$ \\ From here we have recovered private keys
 	\end{enumerate}
 \end{exer}
+
+\begin{exer}[3.13] Find $x$, $y$ such that: $xe_1 + ye_2=1=gcd(e_1,e_2)$ \\ $\Rightarrow m=c_1^x c_2^y = m^{e_1 x + e_2 y} = m \pmod{N}$
+\end{exer}
+
+\begin{exer}[3.37]
+\begin{enumerate}
+	\item [(a)] $\Big(a^{\frac{p-1}{2}}\Big)^2 \equiv a^{p-1} \equiv 1 \pmod p$ \\ $\Rightarrow \binom{a}{p} = \pm 1$ \\ $\Rightarrow \Big(a^{\frac{p-1}{2}} - 1\Big)\Big(a^{\frac{p-1}{2}} + 1\Big) \equiv 0 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv \pm 1 \pmod p$
+	\item [(b)] If $a$ is quadratic residue, then $a \equiv b^2 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv (b^2)^{\frac{p-1}{2}} = b^{p-1} \equiv 1 \pmod p$ \\ If $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ \\ Let $g$ be generator modulo $p$, then $a \equiv g^m \pmod p$ \\ If $m$ is even $\Rightarrow a \equiv g^{2k} \pmod p \Rightarrow a^{\frac{p-1}{2}} \equiv 1 \pmod p$ \\ If $m$ is odd $\Rightarrow a = g^{2k+1} \pmod p \Rightarrow a^{\frac{p-1}{2}} \equiv g^{(2k+1)\frac{p-1}{2}} \equiv g^{p-1} g^{\frac{p-1}{2}} \equiv g^{\frac{p-1}{2}}\not\equiv 1 \pmod p$, because $p-1$ is smallest number that $g^{p-1} \equiv 1 \pmod p$
+	\item [(c)] From (a) and (b)
+	\item [(d)] $\binom{-1}{p} \equiv (-1)^{\frac{p-1}{2}} \pmod p$, if $p=4k+1 \Rightarrow (-1)^{\frac{p-1}{2}} \equiv (-1)^{2k} \equiv 1 \pmod p$ \\ If $p=4k+3 \Rightarrow (-1)^{\frac{p-1}{2}} \equiv (-1)^{2k+1} \equiv -1 \pmod p$
+\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.38] First we need a lemma (\textbf{Gauss lemma}): suppose $p$ is an odd prime, and $a \in \mathbb{Z}$, $p|a$. Consider the set: $a, 2a, 3a, \cdots, \frac{p-1}{2}a$. If $s$ of those residues are greater than $\frac{p}{2}$, then $\binom{a}{p} = (-1)^s$
+	
+	Proof of lemma: Among smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}a$, suppose that $u_1, u_2, \cdots, u_s$ are residues greater than $\frac{p}{2}$, and $v_1, v_2, \cdots, v_t$ are residues smaller than $\frac{p}{2}$ \\ Because $\gcd(ja, p)=1 \forall j, 1 \leq j \leq \frac{p-1}{2}$, all $u_i, v_j \neq 0 \Leftrightarrow u_i, v_j \in \{1,2,\cdots,p-1\}$. We will prove that, the set $\{p-u_1, p-u_2, \cdots, p-u_s, v_1, v_2, \cdots, v_t\}$ is a permutation of $\{1,2,\cdots,\frac{p-1}{2}\}$
+	
+	It is clear that there are no 2 numbers $u_i$ or 2 numbers $v_j$ simultaneously congruent modulo $p$. Because if $ma \equiv na \pmod p$ and $\gcd(a,p)=1$, then $m\equiv n \pmod p \Rightarrow$ contrast with $m,n \leq \frac{p-1}{2}$
+	
+	Similarly, we see that there are no numbers $p-u_i$ congruent with $v_j$, so $$\Rightarrow (p-u_1)(p-u_2)\cdots(p-u_s)v_1 v_2 \cdots v_t \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$$
+	
+	On the other hand, $u_1,u_2,\cdots,u_s, v_1, v_2, \cdots, v_t$ are smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}$, so $$\Rightarrow u_1 u_2 \cdots u_s v_1 v_2 \cdots v_t \equiv a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \pmod p$$
+	
+	So $(-1)^s a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$. And because $\gcd(p, \Big(\frac{p-1}{2}\Big)!) = 1 \Rightarrow (-1)^s a^{\frac{p-1}{2}} \equiv 1 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv (-1)^s \pmod p$ and $\binom{a}{p} = a^{\frac{p-1}{2}}$ \\ $\Rightarrow \binom{a}{p} = (-1)^s \pmod p$
+\end{exer}

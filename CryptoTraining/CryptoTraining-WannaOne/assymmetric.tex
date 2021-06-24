@@ -1,0 +1,216 @@
+\begin{frame}{Mã hóa khóa công khai I}
+\textit{Đặt vấn đề:} Mã hóa khóa đối xứng yêu cầu khóa bên gửi và khóa bên nhận giống nhau. Làm cách nào để truyền khóa từ bên gửi tới bên nhận trong khi đảm bảo không ai biết được khóa?
+
+Có 2 phương án giải quyết vấn đề trên:
+\begin{enumerate}
+    \item Sử dụng mã hóa khóa công khai
+    \item Sử dụng phương pháp trao đổi khóa
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Mã hóa khóa công khai II}
+Mã hóa khóa công khai hoạt động như sau:
+
+\begin{enumerate}
+    \item Ví dụ, bên gửi là A, bên nhận là B
+    \item Bên nhận B tạo \textbf{Private Key} (khóa bí mật) và không để cho bất cứ ai biết. Đồng thời tạo \textbf{Public Key} (khóa công khai) và công khai cho mọi người biết.
+    \item Bên gửi A sử dụng \textbf{Public Key} của bên nhận B, mã hóa thông điệp $P$ mình muốn gửi. $C = E(P, PublicKey)$ và gửi $C$ cho bên nhận B
+    \item Bên nhận B sử dụng \textbf{Private Key} của mình và khôi phục thông điệp của bên gửi A. $P = D(C, PrivateKey)$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{RSA I}
+RSA là thuật toán mã hóa khóa công khai được sử dụng rộng rãi, được đặt theo tên 3 người tạo ra nó: Rivest, Shamir và Adleman (Wikipedia)
+
+\textbf{1. Lý thuyết số}
+
+\begin{itemize}
+    \item Ước và bội: $b$ là ước của $a$ hay $a$ là bội của $b$ nếu $a$ chia hết cho $b$. Ví dụ 4 là ước của 8 và 8 là bội của 4
+    \item Số nguyên tố: là số chỉ có đúng 2 ước là 1 và chính nó
+    \item Đồng dư modulo: 2 số nguyên $a$ và $b$ được gọi là \textbf{đồng dư modulo $m$} nếu $a-b$ chia hết cho $m$. Tức là $(a-b) \vdots m$
+    \item Nghịch đảo modulo: 2 số nguyên $a$ và $b$ được gọi là \textbf{nghịch đảo modulo $m$} nếu $ab \equiv 1 \pmod m$ \\ Ví dụ $7 \cdot 3 = 21 \equiv 1 \pmod{10}$. Vậy 3 là nghịch đảo của 7 modulo 10
+\end{itemize}
+\end{frame}
+
+\begin{frame}{RSA II}
+\textbf{2. Thuật toán RSA}
+\begin{enumerate}
+    \item [(a)] Tạo khóa bí mật và khóa công khai: Bên nhận tạo \textbf{Private Key} và \textbf{Public Key} như sau:
+    \begin{itemize}
+        \item Chọn $i$ là số bit và chọn 2 số nguyên tố $p$, $q$ có $i$ bit và tính $n=pq$
+        \item Đặt $\phi(n)=(p-1)(q-1)$ ($\phi(n)$ là Phi hàm Euler của số n)
+        \item Chọn số $e$ sao cho $gcd(e, \phi(n))=1$
+        \item Tính $d$ là nghịch đảo của $e$ modulo $n$. Tức là $ed \equiv 1 \pmod {\phi(n)}$
+        \item \textbf{Private Key} sẽ là $p$, $q$, $d$
+        \item \textbf{Public Key} sẽ là $n$, $e$
+    \end{itemize}
+    \item [(b)] Mã hóa: Bên gửi muốn gửi thông điệp $m$ nhỏ hơn $n$ bằng cách: $c = m^e \pmod n$ và gửi $c$ cho bên nhận
+    \item [(c)] Giải mã: Bên nhận tính: $m = c^d \pmod n$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{RSA III}
+\textbf{3. Ví dụ}
+
+Giả sử ta muốn mã hóa $m=15$ với \textbf{Private Key} là $p=11$, $q=17$, và $e=3$ (thỏa mãn $gcd(e, (p-1)(q-1))=gcd(3, 10*16)=1$
+
+\begin{enumerate}
+    \item Tính $n=p*q=187$. \textbf{Public Key} sẽ là $n=187$ và $e=3$
+    \item Sử dụng \textit{thuật toán Euclid mở rộng}, ta tính được $d=107$ là nghịch đảo của của $e=3$ modulo $(p-1)(q-1)=10*16=160$ 
+    \item Mã hóa: $c=m^e=15^{3} \equiv 9 \pmod{187}$. Như vậy ciphertext $c=9$
+    \item Giải mã: $m=c^d=9^{107} \equiv 15 \pmod{187}$. Plaintext được khôi phục như ban đầu.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Thuật toán Euclid mở rộng I}
+
+Nhắc lại thuật toán Euclid chuẩn: đặt $d=gcd(a,b)$ là ước chung lớn nhất của $a$ và $b$ .Dựa vào nhận xét $gcd(a, b) = gcd(b, a \bmod b)$, thuật toán dừng khi $b=0$. Tức là $gcd(a, b) = gcd(d, 0)$
+
+\textbf{Thuật toán Euclid mở rộng}: cho 2 số nguyên $a$, $b$ và $d=gcd(a, b)$. Thuật toán Euclid mở rộng tìm 2 số nguyên $x$, $y$ thỏa mãn $ax+by=gcd(a, b)=d$
+
+Dựa vào thuật toán Euclid mở rộng, nếu $gcd(e, \phi(n))=1$ thì ta có thể tìm số $d$ và $k$ sao cho $ed + k \phi(n) = 1$, lấy modulo $\phi(n)$ 2 vế thu được \[ed \equiv 1 \pmod{\phi(n)} \]
+\end{frame}
+
+\begin{frame}{Thuật toán Euclid mở rộng II}
+\begin{algorithm}[H]
+\SetAlgoLined
+\caption{Thuật toán Euclid mở rộng}
+\KwData{2 số nguyên $a$ và $b$}
+\KwResult{Số nguyên $c$ là nghịch đảo của $a$ modulo $b$}
+x0 = 1, x1 = 0, y0 = 0, y1 = 1\;
+\While{b != 0}{
+    q = a div b\;
+    r1 = a - q * b, a = b, b = r1\; 
+    // Thuật toán Euclid chuẩn, $gcd(a, b) = gcd(b, a \bmod b)$\;
+    r2 = x0 - q * x1, x0 = x1, x1 = r2\;
+    r3 = y0 - q * y1, y0 = y1, y1 = r3\;
+}
+\If{a == 1}{Nghịch đảo là $(x0 \bmod b)$}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}{Thuật toán Euclid mở rộng III}
+  \textbf{Ví dụ tính toán}: tìm $x$, $y$ sao cho $25x + 7y = gcd(25, 7)$  
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+  \begin{tikzpicture}[node distance=0.75cm]
+  \node (a0) [rsa] {a};
+  \node (e0) [rsa, right of=a0] {};
+  \node (b0) [rsa, right of=e0] {b};
+  \node (m0) [rsa, right of=b0] {};
+  \node (q0) [rsa, right of=m0] {q};
+  \node (p0) [rsa, right of=q0] {};
+  \node (r0) [rsa, right of=p0] {r1};
+  
+  \node (a1) [rsa, below of=a0] {25};
+  \node (e1) [rsa, right of=a1] {=};
+  \node (b1) [rsa, right of=e1] {7};
+  \node (m1) [rsa, right of=b1] {x};
+  \node (q1) [rsa, right of=m1] {3};
+  \node (p1) [rsa, right of=q1] {+};
+  \node (r1) [rsa, right of=p1] {4};
+  
+  \node (a2) [rsa, below of=a1] {7};
+  \node (e2) [rsa, right of=a2] {=};
+  \node (b2) [rsa, right of=e2] {4};
+  \node (m2) [rsa, right of=b2] {x};
+  \node (q2) [rsa, right of=m2] {1};
+  \node (p2) [rsa, right of=q2] {+};
+  \node (r2) [rsa, right of=p2] {3};
+  
+  \node (a3) [rsa, below of=a2] {4};
+  \node (e3) [rsa, right of=a3] {=};
+  \node (b3) [rsa, right of=e3] {3};
+  \node (m3) [rsa, right of=b3] {x};
+  \node (q3) [rsa, right of=m3] {1};
+  \node (p3) [rsa, right of=q3] {+};
+  \node (r3) [rsa, right of=p3] {1};
+  
+  \node (a4) [rsa, below of=a3] {3};
+  \node (e4) [rsa, right of=a4] {=};
+  \node (b4) [rsa, right of=e4] {1};
+  \node (m4) [rsa, right of=b4] {x};
+  \node (q4) [rsa, right of=m4] {3};
+  \node (p4) [rsa, right of=q4] {+};
+  \node (r4) [rsa, right of=p4] {0};
+  
+  \node (b5) [rsa, below of=b4] {0};
+  
+  \draw [arrow] (b1) -- (a2);
+  \draw [arrow] (r1) -- (b2);
+  \draw [arrow] (b2) -- (a3);
+  \draw [arrow] (r2) -- (b3);
+  \draw [arrow] (r3) -- (b4);
+  \draw [arrow] (r4) -- (b5);
+  \end{tikzpicture}
+  \end{column}
+  \vrule{}
+  \column{0.5\textwidth}
+  \begin{tikzpicture}[node distance=0.75cm]
+  \node (a0) [rsa] {x0};
+  \node (e0) [rsa, right of=a0] {};
+  \node (b0) [rsa, right of=e0] {x1};
+  \node (m0) [rsa, right of=b0] {};
+  \node (q0) [rsa, right of=m0] {q};
+  \node (p0) [rsa, right of=q0] {};
+  \node (r0) [rsa, right of=p0] {r2};
+  
+  \node (a1) [rsa, below of=a0] {1};
+  \node (e1) [rsa, right of=a1] {=};
+  \node (b1) [rsa, right of=e1] {0};
+  \node (m1) [rsa, right of=b1] {x};
+  \node (q1) [rsa, right of=m1] {3};
+  \node (p1) [rsa, right of=q1] {+};
+  \node (r1) [rsa, right of=p1] {1};
+  
+  \node (a2) [rsa, below of=a1] {0};
+  \node (e2) [rsa, right of=a2] {=};
+  \node (b2) [rsa, right of=e2] {1};
+  \node (m2) [rsa, right of=b2] {x};
+  \node (q2) [rsa, right of=m2] {1};
+  \node (p2) [rsa, right of=q2] {+};
+  \node (r2) [rsa, right of=p2] {-1};
+  
+  \node (a3) [rsa, below of=a2] {1};
+  \node (e3) [rsa, right of=a3] {=};
+  \node (b3) [rsa, right of=e3] {-1};
+  \node (m3) [rsa, right of=b3] {x};
+  \node (q3) [rsa, right of=m3] {1};
+  \node (p3) [rsa, right of=q3] {+};
+  \node (r3) [rsa, right of=p3] {2};
+  
+  \node (a4) [rsa, below of=a3] {};
+  \node (e4) [rsa, right of=a4] {};
+  \node (b4) [rsa, right of=e4] {2};
+  
+  \node (a5) [rsa, below of=a4] {2};
+  
+  \draw [arrow] (b1) -- (a2);
+  \draw [arrow] (r1) -- (b2);
+  \draw [arrow] (b2) -- (a3);
+  \draw [arrow] (r2) -- (b3);
+  \draw [arrow] (r3) -- (b4);
+  \draw [arrow] (b4) -- (a5);
+  \end{tikzpicture}
+  \end{columns}
+  Với $y0$ tính tương tự. Như vậy, nghịch đảo của $a=25$ trong modulo $b=7$ là 2 ($2*25=50 \equiv 1 \pmod 7$)
+\end{frame}
+
+\begin{frame}{Ví dụ RSA I}
+\begin{enumerate}
+    \item Mã hóa thông điệp $m=15$ với $e=3$, $n=667$
+    \item Tìm 2 số $x$, $y$ sao cho $63x+35y=gcd(63, 35)=7 $
+    \item Tìm nghịch đảo của 17 modulo 21
+    \item Giải mã thông điệp $c=663$, biết $e=3$, $p=23$ và $q=29$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Ví dụ RSA II}
+\textbf{Đáp án}
+\begin{enumerate}
+    \item $c=m^e \pmod n = 15^3 \pmod{667} = 40$
+    \item $x=-1, y=2$ thỏa mãn $63*(-1)+35*2=7$
+    \item 5
+    \item $d=441 \Rightarrow m=c^d \pmod n = 663^{441} \pmod{23*29} = 20$
+\end{enumerate}
+\end{frame}

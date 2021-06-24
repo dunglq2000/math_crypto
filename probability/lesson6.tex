@@ -38,9 +38,9 @@
 \begin{exercise}[6]
 	Пусть $n$ - количество изделий, чтобы с вероятностью не менее 0,95 обнаружить хотя бы одно изделие низкого качества
 	
-	$\lambda = np = 0,1 n$, мы хотем, чтобы $P_n{k \geq 1} \geq 0,95$ \\ У нас есть
+	$q = 1-p=0,9$, мы хотем, чтобы $P_n(k \geq 1) \geq 0,95$ \\ У нас есть
 	\begin{align*}
-		P_n(k \geq 1) & = 1 - P_n(k = 0) = 1 - \frac{e^{-\lambda} \cdot \lambda^0}{0!} = e^{-\lambda} \geq 0,95 \\ & \Leftrightarrow e^{-\lambda} \leq 0,05 \\ & \Leftrightarrow -\lambda \leq \ln{0,05} = -2,9957 \\ & \Leftrightarrow \lambda \geq 2,9957 \\ & \Leftrightarrow n \cdot 0,1 \geq 2,9957 \\ & \Leftarrow n \geq 29,957 \\ & \Leftrightarrow n \geq 30
+		P_n(k \geq 1) & = 1 - P_n(k = 0) = 1 - (0,9)^n \geq 0,95 \\ & \Leftrightarrow (0,9)^n \leq 0,05 \\ & \Leftrightarrow n \ln{0,9} \leq \ln{0,05} \\ & \Leftrightarrow n \geq \frac{\ln{0,05}}{\ln{0,9}} \\ & \Leftrightarrow n \geq 28,43 \\ & \Leftarrow n \geq 29
 	\end{align*}
 \end{exercise}
 

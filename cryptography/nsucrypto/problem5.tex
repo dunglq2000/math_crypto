@@ -1,0 +1,187 @@
+\documentclass[main.tex]{subfiles}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{listings}
+
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\begin{document}
+
+\section{Encoding}
+
+This algorithm consists of 3 functions (not algorithm). Sorry for my bad Latex skill. For more clearly, please see sample in Python in the last section
+
+\begin{algorithm}[H]
+\caption{Create vector from matrix}
+\KwInput{Matrix M[8][8]}
+\KwOutput{Vector \textbf{result[64]} from matrix with zigzag rule and the number of nonzero elements \textbf{nonzero}}
+
+$x = y = t = 0$
+
+\For{$i = 0;\ i < 16;\ i = i+1$}{
+    \eIf{$i \bmod 2 == 1$}{
+        \tcp{down left}
+        \eIf{$i<8$}{$x=0$; $y=i$}{$x=i-8+1$; $y=7$}
+        \While{$x < 8$ and $y \geq 0$}{
+            result[t] = M[x][y]
+            
+            \If{M[x][y] != 0}{nonzero = nonzero + 1}
+            
+            t = t + 1 \\ x = x + 1 \\ y = y - 1
+        }
+    } {
+        \tcp{up right}
+        \eIf{$i<8$}{$x=i$; $y=0$}{$x=7$; $y=i-8+1$}
+        \While{$x \geq 0$ and $y<8$}{
+            result[t] = M[x][y]
+            
+            \If{M[x][y] != 0}{nonzero = nonzero + 1}
+            
+            t = t + 1 \\ x = x - 1 \\ y = y + 1
+        }
+    }
+    
+}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Convert integer to binary}
+\KwInput{Integer \textbf{a}}
+\KwOutput{Binary string of \textbf{a}}
+
+$is\_negative = 0$
+
+\If{$a > 0$}{$a=-a$ \\ $is\_negative=1$}
+
+bin = binary string of \textbf{a}
+
+\If{is\_negative = 1}{Change left most bit of bin to 0}
+
+\Return{bin}
+\end{algorithm}
+
+\begin{algorithm}\caption{Exp-Golomb encoding}
+\KwInput{One-dimensional vector \textbf{result[64]}}
+\KwOutput{result bit string after encoded by Exp-Golomb}
+$len=63$
+
+\While{result[len] == 0}{$len=len-1$}
+
+$bitstring = ""$ \tcp*{empty string}
+
+\While{$len \geq 0$}{
+    \eIf{result[len] = 0}{
+        bitstring = 0 || bitstring
+    }{
+    u = binary string of result[len] \tcp*{from algorithm 2}
+    
+    k = length of u
+    
+    u = $\underbrace{11...11}_{\text{k bits}}$ || 0 || u
+    
+    bitstring = u || bistring \tcp*{do from back forward}}
+    
+    len = len - 1
+}
+
+head = binary string of nonzero \tcp*{from algorithm 2}
+
+head = (00..00) || head (padding until get 6 bit)
+
+\Return{head || bitstring}
+\end{algorithm}
+
+\section{Decoding}
+
+\begin{algorithm}[H]
+\caption{Exp-Golomb decoding}
+\KwInput{Encoded binary string \textbf{u}}
+\KwOutput{vector number \textbf{a}}
+
+head = 6 first bits of u \\ bitstring = the other bits of u \\ index = 0
+
+\For{$i=0;\ i<len(bistring);$}{
+    numlen = 0
+    
+    \While{bitstring[numlen + i] == '1'}{numlen = numlen + 1}
+    
+    temp = bitstring[(numlen + start + 1) $\rightarrow$ (2*numlen + i)] \\ a[index] = convert temp to int \tcp*{inverse of algorithm 2}
+    
+    i = i + 2*numlen + 1
+    
+    index = index + 1
+}
+\end{algorithm}
+
+After get result, pad it (behind) with 0 until length of vector is 64
+
+\section{Sample code in Python}
+
+\begin{lstlisting}
+def mat2vec(M):
+    result = []
+    nonzero = 0
+    x, y = 0, 0
+    for i in range(16):
+        if i % 2 == 1:
+            if i < 8:
+                x, y = 0, i
+            else:
+                x, y = i-8+1, 7
+            while x<8 and y>=0:
+                result.append(M[x][y])
+                if M[x][y] != 0:
+                    nonzero += 1
+                x, y = x+1, y-1
+                
+        else:
+            if i < 8:
+                x, y = i, 0
+            else:
+                x, y = 7, i - 8 + 1
+            while x>=0 and y<8:
+                result.append(M[x][y])
+                if M[x][y] != 0:
+                    nonzero += 1
+                x, y = x-1, y+1
+    return result, nonzero
+
+def int2bin(a):
+    neg = 0
+    if a < 0:
+        a = -a
+        neg = 1
+    t = [i for i in bin(a)[2:]]
+    if neg:
+        t[0] = '0'
+    return ''.join(t)
+
+def ExpGolombEncode(result, nonzero):
+    l = len(result)-1
+    while result[l] == 0:
+        l -= 1
+    bitstr = ""
+    while l >= 0:
+        if result[l] == 0:
+            bitstr = "0" + bitstr
+        else:
+            u = int2bin(result[l])
+            lenu = len(u)
+            u = "1" * lenu + "0" + u
+            bitstr = u + bitstr
+        l -= 1
+    head = int2bin(nonzero)
+    head = "0" * (6-len(head)) + head
+    return head + bitstr
+
+matrix = [[47,9,2,0,1,0,0,0], [-12,10,-1,-4,0,0,0,0],
+        [3,-5,1,0,0,0,0,0], [1,-1,0,0,0,0,0,0],
+        [-2,0,0,0,0,0,0,0], [0]*8, [0]*8, [0]*8]
+
+result, nonzero = mat2vec(matrix)
+print(ExpGolombEncode(result, nonzero))
+\end{lstlisting}
+
+\section{Result}
+
+My algorithm give the result $6694303$ for the given 100 000 matrices
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts}
+\begin{document}
+Problem 9. Bases
+
+$\mathcal{F}$ is a family of $s$ binary vectors such that all possible componentwise products of up to $d$ vectors from the family $\mathcal{F}$ (including the empty product) form the basic $\mathcal{B}$
+
+$\Rightarrow$ If all possible componentwise products of up to $d$ vectors from the family $\mathcal{F}$ is $\sum_{i=0}^{d} \binom{s}{i}$ must be equal to $r$ (the dimemsion of $\mathbb{F}^r_2$ is $r$, and this is also definition of $r$)
+
+Let those $s$ vectors of family $\mathcal{F}$ be
+\begin{gather*}
+    x_1 = (x_{11}, x_{12}, ..., x_{1r}) \\
+    x_2 = x_{21}, x_{22}, ..., x_{2r}) \\
+    ...... \\\
+    x_s = (x_{s1}, x_{s2}, ..., x_{sr})
+\end{gather*}
+
+And those $s$ vectors generate other $r-s$ vectors, let them be $x_{s+1}, x_{s+2}, ..., x_{r}$
+
+Those $r$ vectors form some basis $\mathcal{B}$, which means that they are linearly independent and they span $\mathbb{F}^r_2$. So we need to know all vectors $x_1, x_2, ..., x_s$, $x_{s+1}, x_{s+2}, ..., x_r$ be linearly independent, which is equivalently with condition:
+
+Matrix $$A = \begin{pmatrix}
+x_1 \\ x_2 \\ .... \\ x_s \\ x_{s+1} \\ x_{s+2} \\ .... \\ x_r
+\end{pmatrix}$$ has determinant not equal to 0 (with $x_i = (x_{i1}, x_{i2}, ..., x_{ir})$
+
+Note that the order of rows does not matter with this condition, because if we change the positions of 2 rows, determinant only changes sign, does not change from 0 to value not equal to 0.
+
+In order to make matrix $A$ have determinant being not equal to 0, we need to choose $s$ vectors $x_1, x_2, ..., x_s$:
+
+Start with $x_1$, let $x_{s+1} = (1,1,....,1)$ (all-ones vector and it always appear so I can choose position for it). Vector $x_1$ is any vector but neither $(0,0,...,0)$ (all-zeros vector) nor $x_{s+1}$. So $x_1$ has $2^r-2$ posibilities. (1)
+
+With $x_2$, it is any vector but is not a linear combination of $x_1$ and $x_{s+1}$. Linear combinations of $x_1$ and $x_{s+1}$ have form $\alpha_1x_1+\alpha_{s+1}x_{s+1}$ (with $\alpha_i \in \mathbb{F}_2$ and there are $2^2$ such pair $(\alpha_1, \alpha_{s+1})$. So $x_2$ has $2^r-2^2$ posibilities. (2)
+
+Let $x_{s+2}=x_1x_2$ (componentwise product of $x_1$ and $x_2$)
+
+With $x_3$, it is any vector but is not a linear combination of $x_1$, $x_2$, $x_{s+1}$ and $x_{s+2}$, similarly, there are $2^r-2^4$ posibilities. (3)
+
+Now let $x_{s+3}=x_1x_3$, $x_{s+4}=x_2x_3$, $x_{s+5}=x_1x_2x_3$
+
+With $x_4$, it is any vector but a linear combination of $x_1, x_2, x_3$, $x_{s+1}, x_{s+2}$, $x_{s+3}, x_{s+4}, x_{s+5}$, there are $2^r-2^8$ posibilities. (4)
+
+In general, $x_{i+1}$ is any vector but is not a linear combination of all posible componentwise products (from $i$ vectors $x_1, x_2, ..., x_i$) of up to $i$ vectors. There are $\sum_{k=0}^{i} \binom{i}{k}$ such componentwise products. And we know that $\sum_{k=0}^{i} \binom{i}{k} = 2^i$, so $x_{i+1}$ has $2^r-2^{2^{i}}$ posibilities.
+
+So, $x_d$ has $2^r-2^{2^{d-1}}$ posibilities.
+
+The number of posibilities to choose $s$ vectors $x_1, x_2, ..., x_s$ is $(2^r-2)(2^r-2^2)(2^r-2^4)....(2^r-2^{2^{s-1}})$
+
+And we need $2^r-2^{2^{s-1}} > 0$
+
+\begin{gather*}
+    2^r-2^{2^{s-1}} > 0 \\
+    \Leftrightarrow r>2^{s-1} \\
+    \Leftrightarrow 2r > 2^s \\
+    \Leftrightarrow 2\sum_{i=0}^{d} \binom{s}{i} > \sum_{i=0}^{s} \binom{s}{i} \\
+    \Leftrightarrow 2\sum_{i=0}^{d} \binom{s}{i} > \sum_{i=0}^d \binom{s}{i} + \sum_{i=d+1}^{s} \binom{s}{i} \\
+    \Leftrightarrow \sum_{i=0}^{d} \binom{s}{i} > \sum_{i=d+1}^{s} \binom{s}{i}
+\end{gather*}
+
+But we have $\binom{s}{k} = \binom{s}{s-k}$, so:
+
+When $s$ is odd, the number of elements of $\sum_{i=0}^s \binom{s}{i}$ is even. So $d > \frac{s+1}{2}$
+
+When $s$ is even, the number of elements of $\sum_{i=0}^s \binom{s}{i}$ is odd. So $d \geq \frac{s}{2}+1$
+
+And $r$ is as definition.
+\end{document}

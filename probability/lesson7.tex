@@ -30,7 +30,7 @@
 	У нас есть $f(x) = \frac{x}{\sigma^2} \cdot \exp\{-\frac{x^2}{2\sigma^2}\}$ \\ Поэтому $$P(X > 3) = \int_{3}^{+\infty} \frac{x}{\sigma^2} \cdot exp\{-\frac{x^2}{2\sigma^2}\}\,dx$$
 	Пусть $t=\frac{x^2}{2\sigma^2} \Rightarrow \,dt = \frac{x}{\sigma^2} \,dx$. Если $x=+\infty \Rightarrow t = +\infty$ и если $x=3 \Rightarrow t = \frac{9}{2\sigma^2}$
 	\begin{align*}
-		\int_{3}^{+\infty} \frac{x}{2\sigma^2} \cdot \exp\{-\frac{x^2}{\sigma^2}\} \,dt & = \int_{9/(\sigma^2)}^{+\infty} e^{-t} \,dt \\ & = -e^{-t} |^{+\infty}_{9/(\sigma^2)} \\ & = -e^{-\infty} + e^{-9/(\sigma^2)} \\ & = 0 + e^{-9/(\sigma^2)} \\ & = e^{-9/(\sigma^2)}
+		\int_{3}^{+\infty} \frac{x}{2\sigma^2} \cdot \exp\{-\frac{x^2}{\sigma^2}\} \,dt & = \int_{9/(\sigma^2)}^{+\infty} e^{-t} \,dt \\ & = -e^{-t} |^{+\infty}_{9/(2\sigma^2)} \\ & = -e^{-\infty} + e^{-9/(2\sigma^2)} \\ & = 0 + e^{-9/(2\sigma^2)} \\ & = e^{-9/(2\sigma^2)}
 	\end{align*}
 \end{exercise}
 

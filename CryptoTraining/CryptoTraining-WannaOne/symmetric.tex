@@ -1,0 +1,138 @@
+\begin{frame}{Mã hóa cổ điển I}
+Mật mã Caesar:
+
+\textit{Ý tưởng}: Ta thay thế mỗi chữ trong bảng tin ban đầu bằng chữ đứng sau nó $k$ vị trí trong bảng chữ cái. Giả sử với $k=3$, ta chuyển đổi như sau:
+
+\begin{table}
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+\hline
+\textit{Chữ ban đầu} & a & b & c & d & e & f & g & h & i & j & k & l & m \\
+\hline
+\textit{Chữ thay thế} & d & e & f & g & h & i & j & k & l & m & n & o & p \\
+\hline \hline
+\textit{Chữ ban đầu} & n & o & p & q & r & s & t & u & v & w & x & y & z \\ \hline
+\textit{Chữ thay thế} & q & r & s & t & u & v & w & x & y & z & a & b & c \\ \hline
+\end{tabular}
+\end{table}
+
+Giả sử với bản tin gốc (plaintext): \textbf{university} \\ Bản tin mã hóa (ciphertext) sẽ là: \textbf{xqlyhuvlwb}
+\end{frame}
+
+\begin{frame}{Mã hóa cổ điển II}
+Bây giờ ta xét về mặt lập trình và toán: gán mỗi chữ cái với một con số nguyên từ 0 tới 25:
+
+\begin{table}
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c |}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l & m \\ \hline 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+\hline \hline
+n & o & p & q & r & s & t & u & v & w & x & y & z \\ \hline 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22 & 23 & 24 & 25 \\ \hline
+\end{tabular}
+\end{table}
+
+Phương pháp Caesar được biểu diễn như sau: với mỗi chứ cái $p$ sẽ được thay bằng chữ mã hóa $C$, trong đó: \[C = (p+k) \pmod{26}\]
+Và quá trình giải mã là: \[p = (C-k) \pmod{26}\]
+
+Ở đây, $mod$ là phép chia lấy phần dư, $k$ gọi là khóa. Để có thể giải mã chính xác phải dùng đúng giá trị $k$ mã hóa.
+\end{frame}
+
+\begin{frame}{Caesar Break I}
+\textbf{Phá mã}
+
+Giả sử ta có được đoạn ciphertext: \textbf{havirefvgl bs vasbezngvba grpuabybtl} và không có $k$.
+
+\begin{table}
+\begin{tabular}{| c | c | c | c |}
+\hline
+$k$ & plaintext \\ \hline
+1 & gzuhqdeufk ar uzradymfuaz fqotzaxask \\ \hline
+2 & fytgpcdtej zq tyqzcxletzy epnsyzwzrj \\ \hline
+3 & exsfobcsdi yp sxpybwkdsyx domrxyvyqi \\ \hline
+4 & dwrenabrch xo rwoxavjcrxw cnlqwxuxph \\ \hline
+5 & cvqdmzaqbg wn qvnwzuibqwv bmkpvwtwog \\ \hline
+6 & bupclyzpaf vm pumvythapvu aljouvsvnf \\ \hline
+7 & atobkxyoze ul otluxsgzout zkinturume \\ \hline
+8 & zsnajwxnyd tk nsktwrfynts yjhmstqtld \\ \hline
+9 & yrmzivwmxc sj mrjsvqexmsr xiglrspskc \\ \hline
+10 & xqlyhuvlwb ri lqirupdwlrq whfkqrorjb \\ \hline
+11 & wpkxgtukva qh kphqtocvkqp vgejpqnqia \\ \hline
+12 & vojwfstjuz pg jogpsnbujpo ufdiopmphz \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Caesar Break II}
+\begin{table}
+\begin{tabular}{| c | c |}
+\hline
+$k$ & plaintext \\ \hline
+13 & \textbf{university of information technology} \\ \hline
+14 & tmhudqrhsx ne hmenqlzshnm sdbgmnknfx \\ \hline
+15 & slgtcpqgrw md gldmpkyrgml rcaflmjmew \\ \hline
+16 & rkfsbopfqv lc fkclojxqflk qbzeklildv \\ \hline
+17 & qjeranoepu kb ejbkniwpekj paydjkhkcu \\ \hline
+18 & pidqzmndot ja diajmhvodji ozxcijgjbt \\ \hline
+19 & ohcpylmcns iz chzilguncih nywbhifias \\ \hline
+20 & ngboxklbmr hy bgyhkftmbhg mxvaghehzr \\ \hline
+21 & mfanwjkalq gx afxgjeslagf lwuzfgdgyq \\ \hline
+22 & lezmvijzkp fw zewfidrkzfe kvtyefcfxp \\ \hline
+23 & kdyluhiyjo ev ydvehcqjyed jusxdebewo \\ \hline
+24 & jcxktghxin du xcudgbpixdc itrwcdadvn \\ \hline
+25 & ibwjsfgwhm ct wbtcfaohwcb hsqvbczcum \\ \hline
+\end{tabular}
+\end{table}
+Như vậy, $k=13$ và plaintext là \textbf{university of information technology}
+\end{frame}
+
+\begin{frame}{Caesar Break III}
+Bài tập nhỏ:
+\begin{enumerate}
+\item Mã hóa thông điệp sau: \textbf{cryptography} với $k=5$
+\item Giải mã thông điệp sau: \textbf{wtaad} với $k=15$
+\item \textit{*Phá mã sau}: \textbf{uryyzna}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Mã hóa đối xứng hiện đại I}
+\textbf{1. Mã dòng (Stream Cipher)}
+
+Mã dòng có các đặc tính sau:
+\begin{itemize}
+\item Kích thước một đơn vị mã hóa: gồm $k$ bit. Plaintext được chia thành các đơn vị mã hóa: $P \rightarrow p_0 p_1 .... p_{n-1}$ với $p_i: k$ bit
+\item Một bộ sinh dãy số ngẫu nhiên: dùng một khóa $K$ ban đầu để sinh ra các số ngẫu nhiên có kích thước bằng kích thước đơn vị mã hóa: \\ $StreamCipher(K) \rightarrow S = s_0 s_1 ... s_{n-1}$ với $s_i: k$ bit.
+\item Mỗi số ngẫu nhiên được XOR với đơn vị mã hóa của plaintextplaintext để có được ciphertext \\ $c_0 = p_0 \oplus s_0, c_1 = p_1 \oplus s_1, ... \rightarrow C = c_0 c_1 ... c_{n-1}$
+\end{itemize}
+Mã hóa dòng tiêu biểu: 
+\begin{itemize}
+    \item A5/1
+    \item RC4
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mã hóa đối xứng hiện đại II}
+\textbf{2. Mã khối (Block Cipher)}
+
+Tương tự mã dòng, plaintext được chia thành các đơn vị mã hóa có kích thước bằng nhau: $P \rightarrow p_0 p_1 ... p_{n-1}$, $p_i: k$ bit, tuy nhiên $p_{n-1}$ có thể ít hơn.
+
+Mã khối không sử dụng phép XOR mà sử dụng một thuật toán $E(p, k)$ nào đó để biến đổi từng khối.
+
+Mã khối tiêu biểu:
+\begin{itemize}
+    \item DES (Data Encryption Standard)
+    \item TripleDES
+    \item AES (Advance Encryption Standard)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mã hóa đối xứng hiện đại III}
+\textbf{3. Các mô hình ứng dụng mã khối (Block cipher mode of operation)}
+
+\begin{itemize}
+    \item Electronic Codeblock (ECB)
+    \item Cipher Block Chaining (CBC)
+    \item Counter (CTR)
+    \item Output Feedback (OFB)
+    \item Cipher Feedback (CFB)
+\end{itemize}
+\end{frame}
+

@@ -1,0 +1,19 @@
+\begin{frame}{Examples}
+\begin{enumerate}
+    \item Viết chương trình tính ước chung lớn nhất của 2 số sau: 420 và 852
+    \item Đoạn code sau làm gì?
+    \lstinputlisting[firstline=1, lastline=12, language=Python]{hill.py}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Đáp án Examples}
+\begin{enumerate}
+    \item $gcd(420, 852) = gcd(852, 420) = gcd(420, 12) = gcd(12, 0) = 12$
+    \item Mỗi ký tự in thường được trừ đi 97 (mã ascii của "a") để nằm trong khoảng 0 ... 25. Mỗi vòng lặp đoạn code mã hóa 2 kí tự cùng 1 lúc như sau:
+    \begin{itemize}
+        \item \textbf{key} là 1 ma trận 2x2 $\begin{bmatrix}k_{00} & k_{01} \\ k_{10} & k_{11}\end{bmatrix}$
+        \item Ciphertext ở vị trí \textbf{i} và \textbf{i+1} được mã hóa bằng plaintext ở 2 vị trí đó bằng công thức: $\begin{bmatrix}c_i \\ c_{i+1}\end{bmatrix} = \begin{bmatrix}k_{00} & k_{01} \\ k_{10} & k_{11}\end{bmatrix} \begin{bmatrix}p_i \\ p_{i+1}\end{bmatrix}$
+        \item Cuối cùng cộng lại cho 97 để trở thành ký tự in thường
+    \end{itemize}
+\end{enumerate}
+\end{frame}
