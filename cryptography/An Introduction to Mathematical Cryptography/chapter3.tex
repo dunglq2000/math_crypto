@@ -44,6 +44,26 @@
 \begin{exer}[3.13] Find $x$, $y$ such that: $xe_1 + ye_2=1=gcd(e_1,e_2)$ \\ $\Rightarrow m=c_1^x c_2^y = m^{e_1 x + e_2 y} = m \pmod{N}$
 \end{exer}
 
+\begin{exer}[3.14]
+	\begin{enumerate}
+		\item [(a)] Because 3, 11 and 17 are primes number, $a \equiv a^3 \pmod 3$, $a \equiv a^{11} \pmod{11}$, $a \equiv a^{17} \pmod{17}$. We have system congruence
+		\begin{align*}
+			a & \equiv a^3 \pmod 3 \\ a & \equiv a^{11} \pmod{11} \\ a & \equiv a^{17} \pmod{17}
+		\end{align*}
+		Consider that $a^3 \equiv a \pmod 3$, $a^{3^2} \equiv a^3 \equiv a \pmod 3$, $\cdots$, $a^{3^i} \equiv a \pmod 3$. And $561 = 2 \cdot 3^5 + 2 \cdot 3^3 + 2 \cdot 3^2 + 3^1$, $a^{561} \equiv a^2 \cdot a^2 \cdot a^2 \cdot a \equiv a^9 \equiv a \pmod 3$.
+		
+		Similarly, $a^{561} \equiv a \pmod{11}$, $a^{561} \equiv a \pmod{17}$. From system congruence:
+		\begin{align*}
+			a^{561} & \equiv a \pmod 3 \\ a^{561} & \equiv a \pmod{11} \\ a^{561} & \equiv a \pmod{17}
+		\end{align*}
+		Using CRT, $a^{561} = (187 \cdot 1 \cdot a + 51 \cdot 8 \cdot a + 33 \cdot 16 \cdot a) \pmod{561} = a \pmod{561}$
+		\item [(c)] Suppose that $n$ is even ($n \geq 4$), we have $(n-1)^{n-1} = (-1)^{n-1} = -1 \pmod n$, but $a^{n-1} \equiv 1 \pmod n$ for all $a$, which is contrary. So $n$ must be odd.
+		\item [(d)] Suppose that $n = p_1^{e_1} p_2^{e_2} \cdots p_r^{e_r}$ ($p_i$ is odd prime). Because $a^{p^{e-1} (p-1)} \equiv 1 \pmod{p^e}$ and $a^{n-1} \equiv 1 \pmod n$, we have $a^{n-1} \equiv 1 \pmod{p^e}$. \\ $\Rightarrow p^{e-1}(p-1) \mid (n-1) \Rightarrow p^{e-1} \mid (n-1)$, but $p^{e-1} \mid n$, which is contrary if $e \geq 2$. Hence $e$ must be 1.
+		
+		So $n = p_1 p_2 \cdots p_r$
+	\end{enumerate}	
+\end{exer}
+
 \begin{exer}[3.37]
 \begin{enumerate}
 	\item [(a)] $\Big(a^{\frac{p-1}{2}}\Big)^2 \equiv a^{p-1} \equiv 1 \pmod p$ \\ $\Rightarrow \binom{a}{p} = \pm 1$ \\ $\Rightarrow \Big(a^{\frac{p-1}{2}} - 1\Big)\Big(a^{\frac{p-1}{2}} + 1\Big) \equiv 0 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv \pm 1 \pmod p$
@@ -53,15 +73,89 @@
 \end{enumerate}
 \end{exer}
 
-\begin{exer}[3.38] First we need a lemma (\textbf{Gauss lemma}): suppose $p$ is an odd prime, and $a \in \mathbb{Z}$, $p|a$. Consider the set: $a, 2a, 3a, \cdots, \frac{p-1}{2}a$. If $s$ of those residues are greater than $\frac{p}{2}$, then $\binom{a}{p} = (-1)^s$
+\begin{exer}[3.38] Prove that the three parts of the quadratic reciprocity theorem are equivalent to the following three concise formulas, where $p$ and $q$ are odd primes
+	\begin{enumerate}
+		\item [(a)] $\Big(\frac{-1}{p}\Big) = (-1)^{\frac{p-1}{2}}$
+		
+		With $p \equiv 1 \pmod 4 \Rightarrow \Big(\frac{-1}{p}\Big) = 1 = (-1)^{\frac{p-1}{2}} \pmod p$ \\ Similarly with $p \equiv 3 \pmod 4$
+		\item [(b)] $\Big(\frac{2}{p}\Big) = (-1)^{\frac{p^2-1}{8}}$
+		
+		First we need a lemma (\textbf{Gauss lemma}): suppose $p$ is an odd prime, and $a \in \mathbb{Z}$, $\gcd(a, p) = 1$. Consider the set: $a, 2a, 3a, \cdots, \frac{p-1}{2}a$. If $s$ of those residues are greater than $\frac{p}{2}$, then $\binom{a}{p} = (-1)^s$
+		
+		\underline{Proof of lemma}: Among smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}a$, suppose that $u_1, u_2, \cdots, u_s$ are residues greater than $\frac{p}{2}$, and $v_1, v_2, \cdots, v_t$ are residues smaller than $\frac{p}{2}$ \\ Because $\gcd(ja, p)=1 \forall j, 1 \leq j \leq \frac{p-1}{2}$, all $u_i, v_j \neq 0 \Leftrightarrow u_i, v_j \in \{1,2,\cdots,p-1\}$. We will prove that, the set $\{p-u_1, p-u_2, \cdots, p-u_s, v_1, v_2, \cdots, v_t\}$ is a permutation of $\{1,2,\cdots,\frac{p-1}{2}\}$
+		
+		It is clear that there are no 2 numbers $u_i$ or 2 numbers $v_j$ simultaneously congruent modulo $p$. Because if $ma \equiv na \pmod p$ and $\gcd(a,p)=1$, then $m\equiv n \pmod p \Rightarrow$ contrast with $m,n \leq \frac{p-1}{2}$
+		
+		Similarly, we see that there are no numbers $p-u_i$ congruent with $v_j$, so $$\Rightarrow (p-u_1)(p-u_2)\cdots(p-u_s)v_1 v_2 \cdots v_t \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$$
+		
+		On the other hand, $u_1,u_2,\cdots,u_s, v_1, v_2, \cdots, v_t$ are smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}$, so $$\Rightarrow u_1 u_2 \cdots u_s v_1 v_2 \cdots v_t \equiv a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \pmod p$$
+		
+		So $(-1)^s a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$. And because $\gcd(p, \Big(\frac{p-1}{2}\Big)!) = 1 \Rightarrow (-1)^s a^{\frac{p-1}{2}} \equiv 1 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv (-1)^s \pmod p$ and $\binom{a}{p} = a^{\frac{p-1}{2}}$ \\ $\Rightarrow \binom{a}{p} = (-1)^s \pmod p$
+		
+		\underline{Return to problem}: using theorem above, we need to find the number of residues, which are greater than $\frac{p}{2}$ among $1 \cdot 2$, $2 \cdot 2$, $\cdots$, $\frac{p-1}{2} \cdot 2$. Therefore we only need to know which numbers are greater than $\frac{p}{2}$
+		
+		$\Rightarrow$ there are $s = \frac{p-1}{2} - \Big[\frac{p}{4}\Big] \Rightarrow \Big(\frac{2}{p}\Big) = (-1)^{\frac{p-1}{2} - \Big[\frac{p}{4}\Big] }$
+		
+		With $p \equiv 1, 3, 5, 7 \pmod 8$, we have $\frac{p-1}{2} - \Big[\frac{p}{4}\Big] \equiv \frac{p^2-1}{8} \pmod 2$ \\ $\Rightarrow \Big(\frac{2}{p}\Big) = (-1)^{\frac{p^2-1}{8}}$
+		\item [(c)] $\Big(\frac{p}{q}\Big)\Big(\frac{q}{p}\Big) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}$
+		
+		We need a lemma: Suppose $p$ is an odd prime, $a$ is odd and $\gcd(a, p) = 1$, then $\Big(\frac{a}{p}\Big) = (-1)^{T(a, p)}$, with $T(a, p) = \sum_{j=1}^{\frac{p-1}{2}}\Big[\frac{ja}{p}\Big]$
+		
+		\underline{Proof of lemma}: consider smallest residues of $a$, $2a$, $3a$, $\cdots$, $\frac{p-1}{2} \cdot a$. As Gauss's lemma, $u_1$, $u_2$, $\cdots$, $u_s$, $v_1$, $v_2$, $\cdots$, $v_t$ are residues greater and less than $\frac{p}{2}$ respectively. According to Euclidean divisor: $$ja = p \Big[\frac{ja}{p}\Big] + \text{remainder}$$, remainder is $u_i$ or $v_j$. We have such $\frac{p-1}{2}$ equations and add them together $$\Rightarrow \sum_{j=1}^{\frac{p-1}{2}}ja = \sum_{j=1}^{\frac{p-1}{2}}p\Big[\frac{ja}{p}\Big] + \sum_{i=1}^{s}u_i + \sum_{j=1}^{t}v_j$$
+		As we pointed out in Gauss's lemma, the set $p-u_1$, $p-u_2$, $\cdots$, $p-u_s$, $v_1$, $v_2$, $\cdots$, $v_t$ is a permutation of the set 1, 2, $\cdots$, $\frac{p-1}{2}$
+		$$\sum_{j=1}^{\frac{p-1}{2}}j = \sum_{i=1}^{s}(p-u_i) + \sum_{j=1}^{t}v_t = ps - \sum_{i=1}^{s}u_i + \sum_{j=1}^{t}v_t$$
+		$$\Rightarrow \sum_{j=1}^{\frac{p-1}{2}}ja - \sum_{j=1}^{\frac{p-1}{2}}j = \sum_{j=1}^{\frac{p-1}{2}}p\Big[\frac{ja}{p}\Big] - ps + 2\sum_{i=1}^{s}u_i$$
+		From formula of $T(a, p)$, $(a-1)\sum_{j=1}^{\frac{p-1}{2}}j = pT(a, p) - ps + 2 \sum_{i=1}^{s}u_i$
+		
+		Because $a$, $p$ are odd, $T(a, p) \equiv s \pmod 2$. From Gauss's lemma we finish.
+		
+		\underline{Return to problem}: Consider pairs $(x, y)$, where $1 \leq x \leq \frac{p-1}{2}$ and $1 \leq y \leq \frac{q-1}{2}$, there are $\frac{p-1}{2}\cdot\frac{q-1}{2}$ pairs. We divide those pairs into 2 groups, depending on the magnitude of $px$ and $qy$.
+		
+		Because $p$, $q$ are two different primes, $px \neq qy$, $\forall (x, y)$
+		
+		We consider pairs with $qx > py$. With every fixed element of $x$ ($1 \leq x \leq \frac{p-1}{2}$), exist $\Big[\frac{qx}{p}\Big]$ elements $y$ satisfying $1 \leq y \leq \frac{qx}{p}$. Therefore, there are $\sum_{i=1}^{\frac{p-1}{2}}\Big[\frac{iq}{p}\Big]$ pairs. When $qx < py$, similarly, there are $\sum_{j=1}^{\frac{q-1}{2}}\Big[\frac{jp}{q}\Big]$ pairs. Because there are $\frac{p-1}{2} \cdot \frac{q-1}{2}$ pairs, we have equation $$\sum_{i=1}^{\frac{p-1}{2}}\Big[\frac{iq}{p}\Big] + \sum_{j=1}^{\frac{q-1}{2}}\Big[\frac{jp}{q}\Big] = \frac{p-1}{2} \cdot \frac{q-1}{2}$$
+		From definition of $T(p, q)$, we have result $$(-1)^{T(p, q) + T(q, p)} = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}$$
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.39] Let $p$ be a prime satisfying $p \equiv 3 \pmod 4$.
+	\begin{enumerate}
+		\item [(a)] Let $a$ be a quadratic residue modulo $p$. Prove that the number $$b \equiv a^{\frac{p+1}{4}} \pmod p$$ has the property that $b^2 \equiv a \pmod p$. (\textit{Hint}. Write $\frac{p+1}{2}$ as $1+\frac{p-1}{2}$ and use Exercise 3.37.) This gives an easy way to take square roots modulo $p$ for primes that are congruent to 3 modulo 4.
+		
+		\underline{Proof}: Using Exercise 3.37, $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ because $a$ is quadratic residue modulo $p$. Therefore $$b^2 \equiv a^{\frac{p+1}{2}} \equiv a^{1+\frac{p-1}{2}} \equiv a \cdot a^{\frac{p-1}{2}} \equiv a \cdot 1 \equiv 1 \pmod p$$
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}[3.40] Let $p$ be and odd prime, let $g \in \mathbb{F}^{*}_p$ be a primitive root, and let $h \in \mathbb{F}^{*}_p$. Write $p - 1 = 2^sm$ with $m$ odd and $s \geq 1$, and write the binary expansion of $\log_g(h)$ as $$log_g(h) = \epsilon_0 + 2\epsilon_1 + 4\epsilon_2 + 8\epsilon_3 + \cdots \quad \text{with} \quad \epsilon_0, \epsilon_1, \cdots \in \{0, 1\}$$
+	Give an algorithm that generalizes Example 3.69 and allows you to rapidly compute $\epsilon_0, \epsilon_1, \cdots, \epsilon_{s-1}$, thereby proving that the first $s$ bits of the discrete logarithm are insecure.
 	
-	Proof of lemma: Among smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}a$, suppose that $u_1, u_2, \cdots, u_s$ are residues greater than $\frac{p}{2}$, and $v_1, v_2, \cdots, v_t$ are residues smaller than $\frac{p}{2}$ \\ Because $\gcd(ja, p)=1 \forall j, 1 \leq j \leq \frac{p-1}{2}$, all $u_i, v_j \neq 0 \Leftrightarrow u_i, v_j \in \{1,2,\cdots,p-1\}$. We will prove that, the set $\{p-u_1, p-u_2, \cdots, p-u_s, v_1, v_2, \cdots, v_t\}$ is a permutation of $\{1,2,\cdots,\frac{p-1}{2}\}$
-	
-	It is clear that there are no 2 numbers $u_i$ or 2 numbers $v_j$ simultaneously congruent modulo $p$. Because if $ma \equiv na \pmod p$ and $\gcd(a,p)=1$, then $m\equiv n \pmod p \Rightarrow$ contrast with $m,n \leq \frac{p-1}{2}$
-	
-	Similarly, we see that there are no numbers $p-u_i$ congruent with $v_j$, so $$\Rightarrow (p-u_1)(p-u_2)\cdots(p-u_s)v_1 v_2 \cdots v_t \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$$
-	
-	On the other hand, $u_1,u_2,\cdots,u_s, v_1, v_2, \cdots, v_t$ are smallest residues of $a, 2a, 3a, \cdots, \frac{p-1}{2}$, so $$\Rightarrow u_1 u_2 \cdots u_s v_1 v_2 \cdots v_t \equiv a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \pmod p$$
-	
-	So $(-1)^s a^{\frac{p-1}{2}} \Big(\frac{p-1}{2}\Big)! \equiv \Big(\frac{p-1}{2}\Big)! \pmod p$. And because $\gcd(p, \Big(\frac{p-1}{2}\Big)!) = 1 \Rightarrow (-1)^s a^{\frac{p-1}{2}} \equiv 1 \pmod p$ \\ $\Rightarrow a^{\frac{p-1}{2}} \equiv (-1)^s \pmod p$ and $\binom{a}{p} = a^{\frac{p-1}{2}}$ \\ $\Rightarrow \binom{a}{p} = (-1)^s \pmod p$
+	\begin{algorithm*}[H]
+		\TitleOfAlgo{Algorithm to find $s$ least significant bits of $x$ in $g^x \equiv h \pmod p$}
+		\SetAlgoLined
+		\KwIn{$g$, $h$, $p$ ($p-1=2^s m$)}
+		\KwOut{$s$ least significant bits of $x: g^x \equiv h \pmod p$}
+		Array $\epsilon_0, \epsilon_1, \cdots, \epsilon_{s-1}$\;
+		\For{$i\gets0$ \KwTo $s-1$}{
+			\eIf{$h$ is quadratic residue}{$\epsilon_i = 0$\; $h = \sqrt{h} \pmod p$}{$\epsilon_i = 1$\; $h = \sqrt{g^{-1}h} \pmod p$}
+		}
+	\end{algorithm*}
+\end{exer}
+
+\begin{exer}[3.41] Let $p$ be a prime satisfying $p \equiv 1 \pmod 3$. We say that $a$ is a \textit{cubic residue modulo $p$} if $p \nmid a$ and there is an integer $c$ satisfying $a \equiv c^3 \pmod p$.
+	\begin{enumerate}
+		\item [(a)] Let $a$ and $b$ be cubic residues modulo $p$. Prove that $ab$ is a cubic residue modulo $p$.
+		
+		\underline{Proof}: $a \equiv x^3 \pmod p$, $y \equiv y^3 \pmod p$. Therefore $$ab \equiv x^3 y^3 = (xy)^3 \pmod p$$, which is cubic residue
+		\item [(b)] Give an example to show that (unlike the case with quadratic residues) it is possible for none of $a$, $b$ and $ab$ to the a cubic residue modulo $p$
+		
+		Let $g$ be primitive root modulo $p$. Choose $a \equiv g^{3k+1} \pmod p$, $b \equiv g^{3k'+1} \pmod p$. Hence $ab \equiv g^{(3k+1)+(3k'+1)} \equiv g^{3(k+k')+2} \pmod p$, which is not cubic residue
+		\item [(c)] Let $g$ be a primitive root modulo $p$. Prove that $a$ is a cubic residue modulo $p$ if and only if $3 \mid \log_g(a)$, where $\log_g(a)$ is the discrete logarithm of $a$ to the base $g$.
+		
+		\underline{Proof of sufficient condition}: If $a$ is a cubic residue modulo $p$, $3 \mid \log_g(a)$. Suppose $a \equiv c^3 \pmod 3$ and $c \equiv g^u = \pmod p$. Hence $a = g^3u \pmod p \Rightarrow 3 \mid \log_g(a)$
+		
+		\underline{Proof of necessary condition}: If $3 | \log_g(a)$, $a$ is a cubic residue modulo $p$. This is obviously.
+		\item [(d)] Suppose instead that $p \equiv 2 \pmod 3$. Prove that for every integer $a$ there is an integerr $c$ satisfying $a \equiv c^3 \pmod p$. In other words, if $p \equiv 2 \pmod 3$, show that every number is a cube modulo $p$.
+		
+		\underline{Proof}: Because $p \equiv 2 \pmod 3 \Rightarrow \gcd(p-1, 3) = 1$. Which means that exist element $d$ such that $3d \equiv 1 \pmod{p-1}$. Hence, equation $x^3 \equiv a \pmod p$ has solution $a^d = x \pmod p$. So every number is a cube modulo $p$.
+	\end{enumerate}
 \end{exer}

@@ -1,0 +1,25 @@
+\section*{Занятие 11}
+
+\begin{exercise}[1]
+	$M(X) = 5,5$, $D(X) = 6,3$
+\end{exercise}
+
+\begin{exercise}[2]
+	$M(X) = 12$, $D(X) = 12,97$
+\end{exercise}
+
+\begin{exercise}[3]
+	$L = \frac{x_1^{m-1}\lambda^m}{(m-1)!}\cdot e^{-\lambda x_1} \cdot \frac{x_2^{m-1}\lambda^m}{(m-1)!}\cdot e^{-\lambda x_2} \cdots \frac{x_n^{m-1}\lambda^m}{(m-1)!}\cdot e^{-\lambda x_n} = \prod_{i=1}^{n}x_i^{m-1}\frac{\lambda^{mn}}{[(m-1)!]^n} \cdot e^{-\lambda\sum_{i=1}^{n}x_i}$ \\ $\Rightarrow \ln L = \ln \Big(\prod_{i=1}^{n}x_i^{m-1}\Big) + mn\ln \lambda - \lambda\sum_{i=1}^{n}x_i - n\ln (m-1)!$ \\ $\Rightarrow \frac{\partial \ln L}{\partial \lambda} = \frac{mn}{\lambda} - \sum_{i=1}^{n}x_i = 0 \Rightarrow \lambda = \frac{mn}{\sum_{i=1}^{n}x_i}$
+\end{exercise}
+
+\begin{exercise}[4]
+	$f(x) = F'(x) = \lambda e^{-\lambda x}$ \\ $\Rightarrow L = \lambda^{10} e^{-\lambda\sum_{i=1}^{10}x_i} = \lambda^{10} e^{-3000\lambda}$ \\ $\Rightarrow \ln L = 10 \ln \lambda - 3000 \lambda$ \\ $\Rightarrow \frac{\partial \ln L}{\partial \lambda} = \frac{10}{\lambda} - 3000 = 0$ \\ $\Rightarrow \lambda = 1/300$
+\end{exercise}
+
+\begin{exercise}[5]
+	$L = \frac{x_1 x_2 x_3}{\sigma^6}\exp\{-\frac{x_1^2+x_2^2+x_3^2}{2\sigma^2}\} = \frac{1,98}{\sigma^6}exp\{-\frac{4,9}{\sigma^2}\}$ \\ $\Rightarrow \ln L = \ln 1,98 - 6\ln \sigma - \frac{4,9}{2\sigma^2}$ \\ $\frac{\partial\ln L}{\partial \sigma} = -\frac{6}{\sigma}+\frac{4,9}{\sigma^3}=0$ \\ $\Rightarrow \sigma^2 = \frac{49}{60} \approx 0,82$
+\end{exercise}
+
+\begin{exercise}[6]
+	$L = C^1_k p (1-p)^{k-1} = kp(1-p)^{k-1}$ \\ $\Rightarrow \ln L = \ln k + \ln p + (k-1)\ln(1-p)$ \\ $\Rightarrow \frac{\partial \ln L}{\partial p} = \frac{1}{p} - \frac{k-1}{1-p} = 0$ \\ $\Rightarrow \frac{1-p-p(k-1)}{p(p-1)} = 0 \Leftrightarrow pk = 1 \Leftrightarrow p = 1/k$
+\end{exercise}

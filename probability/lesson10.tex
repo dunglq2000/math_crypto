@@ -1,0 +1,27 @@
+\section*{Занятие 10}
+\begin{exercise}[3]
+	\begin{enumerate}
+		\item [(a)] У нас есть $0,4 < k/n < 0,6 \Rightarrow |k/n-0,5|<0,1 \Rightarrow P(|k/n-0,5|<0,1) > 0,9$ \\ $\Rightarrow 2\Phi_0\Big(\frac{0,1}{\sqrt{0,5 \cdot 0,5/n}}\Big) > 0,9$ \\ $\Leftrightarrow \Phi_0\Big(\frac{0,1\sqrt{n}}{0,5}\Big) > 0,45$ \\ $\Leftrightarrow 0,2\sqrt{n} > 1,65 \Rightarrow n > 68,0625$. Значит больше 68
+		\item [(б)] $P(|k/n<0,5|<0,1) \geq 1 - \frac{0,25}{0,1^2 n} = 0,9 \Leftrightarrow n \geq 250$. Значит больше 250
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[4]
+	Пусть $X_i$ - время $i$-го \\ $\sum_{i=1}^{20}X_i$ - сумма времени
+	
+	$y = \frac{1}{20} \sum_{i=1}^{20}X_i$ \\ $M\Big(\frac{1}{20}\sum_{i=1}^{20}X_i\Big)=\frac{1}{20}\cdot 20 \cdot \frac{1}{\lambda} = 100$ \\ $D\Big(\frac{1}{20}\sum_{i=1}^{20}X_i\Big) = \frac{1}{20^2} \cdot 20 \cdot \frac{1}{\lambda^2} = 500$ \\ $\frac{1}{20}\sum_{i=1}^{20}X_i \geq 2500/20 = 125$ \\ $P\Big(y \geq \frac{125-100}{\sqrt{500}}\Big) = P(y \geq 1,12) = 0,5 - \Phi_0(1,12) = 0,1314$
+\end{exercise}
+
+\begin{exercise}[5]
+	$p=0,1$, $n=50$, $q=0,9$ \\ $P(X \leq 3) = P(0 \leq X \leq 3) = \Phi_0(\frac{3-50 \cdot 0,1}{\sqrt{50 \cdot 0,1 \cdot 0,9}}) - \Phi_0(\frac{0-50 \cdot 0,1}{\sqrt{50 \cdot 0,1 \cdot 0,9}}) = \Phi_0(-0,94) - \Phi_0(-2,36) = 0,1645 \approx 0,16$
+\end{exercise}
+
+\begin{exercise}[6]
+	$p=0,8$, $q=0,2$, $n=100$
+	\begin{enumerate}
+		\item [(a)] $P_{100}(75 \leq k \leq 100) = \Phi_0(\frac{100-100\cdot 0,8}{\sqrt{100\cdot 0,8\cdot 0,2}})-\Phi_0(\frac{75-100\cdot 0,8}{\sqrt{100\cdot 0,8\cdot 0,2}}) = \Phi_0(5)-\Phi_0(-1,25) = 0,8944$
+		\item [(б)] $P_{100}(70 \leq k \leq 90) = \Phi_0(2,5) - \Phi_0(-2,5) = 0,9876$
+		\item [(в)] $P_{100}(0 \leq k \leq 82) = \Phi_0(0,5) - \Phi_0(-20) = 0,1915+0,5=0,6915$
+	\end{enumerate}
+\end{exercise}
+

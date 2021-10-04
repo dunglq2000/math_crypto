@@ -4,7 +4,7 @@ Let $g$ be a primitive root of $\mathbb{F}_p$
 
 \begin{enumerate}
     \item[(a)] Suppose that $x = a$ and $x = b$ are both integer solutions to the congruence $g^x \equiv h$ (mod $p$). Prove that $a \equiv b$ (mod $p-1$). Explain why this implies that the map (2.1) on page 64 is well-defined
-    \item[(b)] Prove that $\log_g(h_1 h_2) = \log_g(h_1) + \log_g(h_2)$ for all $h_1, h_2 \in \F^*_p$
+    \item[(b)] Prove that $\log_g(h_1 h_2) = \log_g(h_1) + \log_g(h_2)$ for all $h_1, h_2 \in \mathbb{F}^*_p$
     \item[(c)] Prove that $\log_g(h^n) = n\log_g(h)$ for all $h \in \mathbb{F}^{*}_p$ and $n \in \mathbb{Z}$
 \end{enumerate}
 \end{exer}
@@ -70,7 +70,7 @@ We have $g^{p-1} \equiv 1$ (mod $p$).
     
     \item [(2)] If $\log_ga$ modulo $p-1$ is even
     
-    $\Rightarrow \log_ga = 2\log_gb$ (mod $p-1$) with some $b \in \F_p$
+    $\Rightarrow \log_ga = 2\log_gb$ (mod $p-1$) with some $b \in \mathbb{F}_p$
     
     $\Rightarrow \log_ga = \log_g(b^2)$ (mod $p-1$)
     
@@ -248,31 +248,31 @@ Prove that each of the following maps is a group homomophism.
     
     It is clear that $(ab)^{-1} = a^{-1}b^{-1}$, so $\phi(ab) = \phi(a)\phi(b)$ $\Rightarrow$ homomorphism.
     
-    \item [(c)] The discrete logarithm map $\log_g: \F_p^* \rightarrow \Z/(p-1)\Z$, where $g$ is a primitive root modulo $p$
+    \item [(c)] The discrete logarithm map $\log_g: \mathbb{F}_p^* \rightarrow \Z/(p-1)\Z$, where $g$ is a primitive root modulo $p$
     
     $\phi(a) = x$ satisfying $g^x \equiv a \pmod p$
     
-    $\forall a, b \in \F_p^*$, $\phi(a) = x$: $g^x \equiv a \pmod p$ and $\phi(b) = y$: $g^y \equiv b \pmod p$ \\ $\Rightarrow \phi(a)\phi(b) = x+y$ (Because $x$, $y \in \Z/(p-1)\Z$, rule of group is addition modulo $p-1$) \\ And we have $g^{x+y} \equiv ab \pmod p \Rightarrow \phi(ab)=x+y$ \\ $\Rightarrow \phi(a)\phi(b) = \phi(ab)$ \\ $\Rightarrow$ homomorphims.
+    $\forall a, b \in \mathbb{F}_p^*$, $\phi(a) = x$: $g^x \equiv a \pmod p$ and $\phi(b) = y$: $g^y \equiv b \pmod p$ \\ $\Rightarrow \phi(a)\phi(b) = x+y$ (Because $x$, $y \in \Z/(p-1)\Z$, rule of group is addition modulo $p-1$) \\ And we have $g^{x+y} \equiv ab \pmod p \Rightarrow \phi(ab)=x+y$ \\ $\Rightarrow \phi(a)\phi(b) = \phi(ab)$ \\ $\Rightarrow$ homomorphims.
     \end{enumerate}
 \end{exer}
 
 \begin{exer}[2.15]
 \begin{enumerate}
-    \item [(a)] Prove that $\text{GL}_2(\F_p)$ is a group.
-    If $A$ and $B$ is 2 matrices in $\text{GF}_2(\F_p)$, then $AB$ also in $\text{GL}_2(\F_p)$ (because result will be modulo 2)
+    \item [(a)] Prove that $\text{GL}_2(\mathbb{F}_p)$ is a group.
+    If $A$ and $B$ is 2 matrices in $\text{GF}_2(\mathbb{F}_p)$, then $AB$ also in $\text{GL}_2(\mathbb{F}_p)$ (because result will be modulo 2)
     
-    Identity element is $E = \begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}$ because $AE=EA=A \quad \forall A \in \text{GL}_2(\F_p)$
+    Identity element is $E = \begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}$ because $AE=EA=A \quad \forall A \in \text{GL}_2(\mathbb{F}_p)$
     
-    $\forall A \in \text{GL}_2(\F_p)$, because $detA \neq 0 \Rightarrow$ $A$ has inverse in $\text{GL}_2(\F_p)$
+    $\forall A \in \text{GL}_2(\mathbb{F}_p)$, because $detA \neq 0 \Rightarrow$ $A$ has inverse in $\text{GL}_2(\mathbb{F}_p)$
     
-    $\forall A, B, C \in \text{GL}_2(\F_p): (AB)C=A(BC)$
+    $\forall A, B, C \in \text{GL}_2(\mathbb{F}_p): (AB)C=A(BC)$
     
-    Therefore, $\text{GL}_2(\F_p)$ is a group.
-    \item [(b)] Show that $\text{GL}_2(\F_p)$ is a noncommutative group for every prime $p$.
-    Suppose we have $A = \begin{pmatrix}a_{11} & a_{12} \\ a_{21} & a_{22}\end{pmatrix} \in \text{GL}_2(\F_p)$ and $B=\begin{pmatrix}b_{11} & b_{12} \\ b_{21} & b_{22}\end{pmatrix} \in \text{GL}_2(\F_p)$
+    Therefore, $\text{GL}_2(\mathbb{F}_p)$ is a group.
+    \item [(b)] Show that $\text{GL}_2(\mathbb{F}_p)$ is a noncommutative group for every prime $p$.
+    Suppose we have $A = \begin{pmatrix}a_{11} & a_{12} \\ a_{21} & a_{22}\end{pmatrix} \in \text{GL}_2(\mathbb{F}_p)$ and $B=\begin{pmatrix}b_{11} & b_{12} \\ b_{21} & b_{22}\end{pmatrix} \in \text{GL}_2(\mathbb{F}_p)$
     
     Top left element of product $AB$ is $(a_{11}b_{11}+a_{12}b_{21}) \pmod p$ \\ Top left element of product $BA$ is $(b_{11}a_{11} + b_{12}a_{21}) \pmod p$ \\ If we choose $a_{12} \not\equiv b_{21}^{-1}a_{21}b_{21} \pmod p$, then $AB \neq BA$, which means noncommutative.
-    \item [(c)] Describe $\text{GL}_2(\F_p)$ completely. That is, list its elements and describe the multiplication table.
+    \item [(c)] Describe $\text{GL}_2(\mathbb{F}_p)$ completely. That is, list its elements and describe the multiplication table.
     $A_1 = \begin{pmatrix}0 & 1\\1 & 0\end{pmatrix}$, $A_2 = \begin{pmatrix}0 & 1\\1 & 1\end{pmatrix}$, $A_3 = \begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}$, $A_4 = \begin{pmatrix}1 & 0\\1 & 1\end{pmatrix}$, $A_5 = \begin{pmatrix}1 & 1\\0 & 1\end{pmatrix}$, $A_6 = \begin{pmatrix}1 & 1\\1 & 0\end{pmatrix}$
     
     Multiplication table:
@@ -290,12 +290,12 @@ Prove that each of the following maps is a group homomophism.
             \hline
         \end{tabular}
     \end{center}
-    \item [(d)] How many elements are there in the group $\text{GL}_2(\F_p)$?
+    \item [(d)] How many elements are there in the group $\text{GL}_2(\mathbb{F}_p)$?
     
     First row $u_1$ is any vector but $(0, 0)$. We have $p^2-1$ ways. \\ Second row $u_2$ is any vector but multiple of first vector. We have $p^2-p$ ways (remove $0u_1$ to $(p-1)u_1$). \\ $\Rightarrow$ There are $(p^2-1)(p^2-p)$ elements.
-    \item [(d)] How many elements are there in the group $\text{GL}_n(\F_p)$?
+    \item [(d)] How many elements are there in the group $\text{GL}_n(\mathbb{F}_p)$?
     
-    Similar to (d), we need first row $u_1$ is any vector but $(0,0)$. We have $p^n-1$ ways. \\ Second vector $u_2$ is any vector but a multiple of first row. We have $p^n-p$ ways. \\ Third vector $u_3$ is any vector but a linear combination of $u_1$ and $u_2$. The number of $a_1u_1 + a_2u_2$ is the number of pair $(a_1, a_2)$ and there is $p^2$ posibilities ($a_1, a_2 \in \F_p$. So third vector has $p^n-p^2$ ways. \\ In general, n-th vector is any vector but a linear combination of $u_1$, $u_2$, ..., $u_{n-1}$, so there is $p^n-p^{n-1}$ ways. \\ $\Rightarrow$ There are $(p^n-1)(p^n-p)...(p^n-p^{n-1})$ elements.
+    Similar to (d), we need first row $u_1$ is any vector but $(0,0)$. We have $p^n-1$ ways. \\ Second vector $u_2$ is any vector but a multiple of first row. We have $p^n-p$ ways. \\ Third vector $u_3$ is any vector but a linear combination of $u_1$ and $u_2$. The number of $a_1u_1 + a_2u_2$ is the number of pair $(a_1, a_2)$ and there is $p^2$ posibilities ($a_1, a_2 \in \mathbb{F}_p$. So third vector has $p^n-p^2$ ways. \\ In general, n-th vector is any vector but a linear combination of $u_1$, $u_2$, ..., $u_{n-1}$, so there is $p^n-p^{n-1}$ ways. \\ $\Rightarrow$ There are $(p^n-1)(p^n-p)...(p^n-p^{n-1})$ elements.
 \end{enumerate}
 \end{exer}
 

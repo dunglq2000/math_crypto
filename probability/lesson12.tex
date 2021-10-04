@@ -1,0 +1,11 @@
+\section*{Занятие 12}
+
+\begin{exercise}[1]
+	Пусть $Y = pX + b$, у нас есть $$F(p, b) = \sum_{k=1}^{n}(pX_k + b - Y_k)^2$$ $$\frac{\partial F}{\partial p} = \sum_{k=1}^{n}2X_k(pX_k + b - Y_k) = 0$$, $$\frac{\partial F}{\partial b} = \sum_{k=1}^{n} 2(pX_k + b - Y_k) = 0$$ Откуда $$p\sum_{k=1}^{n}X_k^2 + b\sum_{k=1}^{n}X_k = \sum_{k=1}^{n}X_k Y_k$$, $$p\sum_{k=1}^{n}X_k + nb = \sum_{k=1}^{n}Y_k$$ Мы вычисляем \\
+	
+	$\sum_{k=1}^{n}X_k^2 = 6^2 + 10^2 + \cdots + 35^2 + 38^2 = 6463$ \\ $\sum_{k=1}^{n}X_k = 6 + 10 + \cdots + 35 + 38 = 233$ \\ $\sum_{k=1}^{n}X_k Y_k = 6 \cdot 0 + 10 \cdot 18 + \cdots + 38 \cdot 30 = 5133$ \\ $\sum_{k=1}^{n}Y_k = 0 + 18 + \cdots + 30 = 185$ \\ $\Rightarrow \tilde{p} \approx 0,8$ и $\tilde{b} \approx -0,03$
+	
+	Так как $\overline{X} = \frac{233}{10} = 23,3$, \\ $s_x^2 = \frac{(6-23,3)^2 + (10 - 23,3)^2 + \cdots + (38 - 23,3)^2}{9} = 114,9 \Rightarrow s_x = \sqrt{114,9} \approx 10,72$
+	
+	Аналогично, $s_y = 11,47$. Поэтому коэффициент корреляции будет $$\tilde{r}_{xy} = 0,8 \frac{10,72}{11,47} = 0,74$$
+\end{exercise}
