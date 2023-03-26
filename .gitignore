@@ -1,4 +1,4 @@
-*.synctex
-*.aux
-*.fdb_latexmk
-*.fls
+aes/*.synctex.gz
+aes/*.aux
+aes/*.fdb_latexmk
+aes/*.fls
